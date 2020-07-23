@@ -18,8 +18,8 @@
 		<div class="main-wrap">
 			<div class="crumb-wrap">
 				<div class="crumb-list">
-					<i class="icon-font fa fa-house-user"></i><a href="/admin/">Home</a><span
-						class="crumb-step">&gt;</span><span class="crumb-name">User
+					<i class="icon-font"></i><a href="index.jsp">Home</a><span
+						class="crumb-step">&gt;</span><span class="crumb-name">Category
 						Management</span>
 				</div>
 			</div>
@@ -48,7 +48,7 @@
 				<form name="myform" id="myform" method="post">
 					<div class="result-title">
 						<div class="result-list">
-							<a href="insert.jsp"><i class="icon-font"></i>New User</a> <a
+							<a href="add_category.jsp"><i class="icon-font"></i>New Category</a> <a
 								id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>Delete
 								All</a> <a id="updateOrd" href="javascript:void(0)"><i
 								class="icon-font"></i>更新排序</a>
@@ -64,21 +64,19 @@
 									type="checkbox"></th>
 								<th>Index</th>
 								<th>ID</th>
-								<th>Email</th>
-								<th>Full Name</th>
+								<th>Category Name</th>
 								<th>Action</th>
 							</tr>
-							<c:forEach var="user" items="${listUsers}" varStatus="status">
+							<c:forEach var="cat" items="${listCategory}" varStatus="status">
 								<tr>
 									<td class="tc"><input name="id[]" value="59"
 										type="checkbox"></td>
 									<td>${status.index + 1}</td>
-									<td>${user.id}</td>
-									<td>${user.email}</td>
-									<td>${user.fullname}</td>
+									<td>${cat.categoryId}</td>
+									<td>${cat.name}</td>
 									<td>
-										<a class="link-update" href="edit_user?id=${user.id}">Edit</a> 
-										<a class="link-del" href="javascript:confirmDelete(${user.id}, 'user')">Delete</a>
+										<a class="link-update" href="edit_category?id=${cat.categoryId}">Edit</a> 
+										<a class="link-del" href="javascript:confirmDelete(${cat.categoryId}, 'category')">Delete</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -88,6 +86,5 @@
 				</form>
 			</div>
 		</div>
-		<script src="https://kit.fontawesome.com/c852dd71e5.js" crossorigin="anonymous"></script>
 </body>
 </html>

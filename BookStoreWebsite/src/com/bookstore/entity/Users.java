@@ -14,7 +14,8 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u ORDER BY u.fullname"),
 	@NamedQuery(name = "Users.countAll", query = "SELECT COUNT(*) FROM Users u"),
-	@NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email")
+	@NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email"),
+	@NamedQuery(name = "Users.checkLogin", query = "SELECT u FROM Users u WHERE u.email = :email AND u.password = :password")
 })
 public class Users {
 	private Integer id; // primary key
@@ -28,7 +29,16 @@ public class Users {
 		super();
 	}
 
+	// for new user creation
 	public Users(String email, String fullname, String password) {
+		this.fullname = fullname;
+		this.email = email;
+		this.password = password;
+	}
+	
+	// for update
+	public Users(Integer id, String email, String fullname, String password) {
+		this.id = id;
 		this.fullname = fullname;
 		this.email = email;
 		this.password = password;

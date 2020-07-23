@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">
@@ -9,9 +10,8 @@
         </div>
         <div class="top-info-wrap">
             <ul class="top-info-list clearfix">
-                <li><a href="#">Admin</a></li>
-                <li><a href="#">Change Password</a></li>
-                <li><a href="#">Exit</a></li>
+                <li><a href="#"><c:out value="${sessionScope.username}" /></a></li>
+                <li><a href="logout">Logout</a></li>
             </ul>
         </div>
     </div>

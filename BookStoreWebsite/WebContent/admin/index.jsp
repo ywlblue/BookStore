@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Jade & Gem Admin Panel</title>
-    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/admin/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/admin/main.css"/>
 </head>
 <body>
 	<jsp:include page="topbar.jsp"></jsp:include>
@@ -22,9 +22,9 @@
 	            </div>
 	            <div class="result-content">
 	                <div class="short-wrap">
-	                    <a href="insert.html"><i class="icon-font">&#xe001;</i>New Book</a>
-	                    <a href="insert.jsp"><i class="icon-font">&#xe005;</i>New User</a>
-	                    <a href="insert.html"><i class="icon-font">&#xe048;</i>New Category</a>
+	                    <a href="insert.html"><i class="icon-font fas fa-book-open"></i>New Book</a>
+	                    <a href="insert_user.jsp"><i class="icon-font fas fa-users-cog"></i>New User</a>
+	                    <a href="add_category.jsp"><i class="icon-font fas fa-tags"></i>New Category</a>
 	                </div>
 	            </div>
 	        </div>
