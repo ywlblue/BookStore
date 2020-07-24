@@ -9,6 +9,7 @@
 	<title>All Users - Jade & Gem Books</title>
 	<link rel="stylesheet" type="text/css" href="../css/admin/common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/admin/main.css"/>
+	<script defer src="../js/general.js"></script>
 </head>
 <body>
 	<jsp:include page="topbar.jsp"></jsp:include>
@@ -18,7 +19,7 @@
 			<div class="crumb-wrap">
 				<div class="crumb-list">
 					<i class="icon-font fa fa-house-user"></i><a href="/admin/">Home</a><span
-						class="crumb-step">&gt;</span><span class="crumb-name">User
+						class="crumb-step">&gt;</span><span class="crumb-name">Book
 						Management</span>
 				</div>
 			</div>
@@ -47,8 +48,8 @@
 				<form name="myform" id="myform" method="post">
 					<div class="result-title">
 						<div class="result-list">
-							<a href="insert_user"><i class="icon-font fas fa-users-cog"></i>New User</a> <a
-								id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>Delete
+							<a href="new_book"><i class="icon-font fas fa-book-open"></i>New Book</a> <a
+								id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>Delete
 								All</a> <a id="updateOrd" href="javascript:void(0)"><i
 								class="icon-font"></i>更新排序</a>
 						</div>
@@ -63,21 +64,31 @@
 									type="checkbox"></th>
 								<th>Index</th>
 								<th>ID</th>
-								<th>Email</th>
-								<th>Full Name</th>
+								<th>Image</th>
+								<th>Title</th>
+								<th>Author</th>
+								<th>Category</th>
+								<th>Price</th>
+								<th>Last Updated</th>
 								<th>Action</th>
 							</tr>
-							<c:forEach var="user" items="${listUsers}" varStatus="status">
+							<c:forEach var="book" items="${listBooks}" varStatus="status">
 								<tr>
 									<td class="tc"><input name="id[]" value="59"
 										type="checkbox"></td>
 									<td>${status.index + 1}</td>
-									<td>${user.id}</td>
-									<td>${user.email}</td>
-									<td>${user.fullname}</td>
+									<td>${book.bookId}</td>
 									<td>
-										<a class="link-update" href="edit_user?id=${user.id}">Edit</a> 
-										<a class="link-del" href="javascript:confirmDelete(${user.id}, 'user')">Delete</a>
+										<img src="data:image/jpg;base64,${book.base64Image}" width="84" text-align="center"/>
+									</td>
+									<td>${book.title}</td>
+									<td>${book.author}</td>
+									<td>${book.category.name}</td>
+									<td>${book.price}</td>
+									<td>${book.lastUpdateTime}</td>
+									<td>
+										<a class="link-update" href="edit_book?id=${book.bookId}">Edit</a> 
+										<a class="link-del" href="javascript:confirmDelete(${book.bookId}, 'book')">Delete</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -87,7 +98,6 @@
 				</form>
 			</div>
 		</div>
+		<script src="https://kit.fontawesome.com/c852dd71e5.js" crossorigin="anonymous"></script>
 </body>
-<script src="https://kit.fontawesome.com/c852dd71e5.js" crossorigin="anonymous"></script>
-<script defer src="../js/general.js"></script>
 </html>

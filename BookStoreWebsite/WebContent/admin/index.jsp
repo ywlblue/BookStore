@@ -14,7 +14,7 @@
 		<jsp:include page="sidebar.jsp"></jsp:include>
 	    <div class="main-wrap">
 	        <div class="crumb-wrap">
-	            <div class="crumb-list"><i class="icon-font">&#xe06b;</i><span>Welcome to J&G Admin panel!</span></div>
+	            <div class="crumb-list"><i class="icon-font fas fa-bullhorn"></i><span>Welcome to J&G Admin panel!</span></div>
 	        </div>
 	        <div class="result-wrap">
 	            <div class="result-title">
@@ -22,9 +22,9 @@
 	            </div>
 	            <div class="result-content">
 	                <div class="short-wrap">
-	                    <a href="insert.html"><i class="icon-font fas fa-book-open"></i>New Book</a>
 	                    <a href="insert_user.jsp"><i class="icon-font fas fa-users-cog"></i>New User</a>
 	                    <a href="add_category.jsp"><i class="icon-font fas fa-tags"></i>New Category</a>
+	                    <a href="new_book"><i class="icon-font fas fa-book-open"></i>New Book</a>
 	                </div>
 	            </div>
 	        </div>

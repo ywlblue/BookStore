@@ -23,7 +23,4 @@ public class AdminLogoutServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
 	}
-
-
-
 }

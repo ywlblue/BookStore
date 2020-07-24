@@ -49,9 +49,9 @@ public class JpaDAO<E> {
 	}
 	
 	public E delete(Class<E> type, Object id) {
-		E entity = entityManager.find(type, id);
 		
 		entityManager.getTransaction().begin();
+		E entity = entityManager.getReference(type, id);
 		
 		entityManager.remove(entity);
 		entityManager.getTransaction().commit();
