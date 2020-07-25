@@ -2,10 +2,10 @@
 <div class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">
-            <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">Admin</a></h1>
+            <h1 class="topbar-logo"><img src="../images/logo-admin.png"/></h1>
             <ul class="navbar-list clearfix">
-                <li><a class="on" href="index.html">Home</a></li>
-                <li><a href="#" target="_blank">Jade & Gem</a></li>
+                <li><a class="on" href="${pageContext.request.contextPath}/admin/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/" target="_blank">Jade & Gem</a></li>
             </ul>
         </div>
         <div class="top-info-wrap">

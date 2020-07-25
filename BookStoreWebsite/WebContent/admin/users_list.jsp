@@ -17,7 +17,7 @@
 		<div class="main-wrap">
 			<div class="crumb-wrap">
 				<div class="crumb-list">
-					<i class="icon-font fa fa-house-user"></i><a href="/admin/">Home</a><span
+					<i class="icon-font fa fa-house-user"></i><a href="${pageContext.request.contextPath}/admin/">Home</a><span
 						class="crumb-step">&gt;</span><span class="crumb-name">User
 						Management</span>
 				</div>

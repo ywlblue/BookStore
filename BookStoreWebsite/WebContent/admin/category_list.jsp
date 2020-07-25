@@ -18,7 +18,7 @@
 		<div class="main-wrap">
 			<div class="crumb-wrap">
 				<div class="crumb-list">
-					<i class="icon-font"></i><a href="index.jsp">Home</a><span
+					<i class="icon-font fa fa-house-user"></i><a href="${pageContext.request.contextPath}/admin/">Home</a><span
 						class="crumb-step">&gt;</span><span class="crumb-name">Category
 						Management</span>
 				</div>
@@ -48,10 +48,10 @@
 				<form name="myform" id="myform" method="post">
 					<div class="result-title">
 						<div class="result-list">
-							<a href="add_category.jsp"><i class="icon-font"></i>New Category</a> <a
-								id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>Delete
+							<a href="add_category.jsp"><i class="icon-font fas fa-tags"></i>New Category</a> <a
+								id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>Delete
 								All</a> <a id="updateOrd" href="javascript:void(0)"><i
-								class="icon-font"></i>更新排序</a>
+								class="icon-font"></i>更新排序</a>
 						</div>
 					</div>
 					<c:if test="${created_msg != null}">

@@ -15,7 +15,12 @@
     <jsp:include page="sidebar.jsp"></jsp:include>
     <div class="main-wrap">
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">Home</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">User Management</a><span class="crumb-step">&gt;</span><span>New User</span></div>
+            <div class="crumb-list">
+            	<i class="icon-font fa fa-house-user"></i>
+            		<a href="${pageContext.request.contextPath}/admin/">Home</a><span class="crumb-step">&gt;</span>
+            		<a class="crumb-name" href="/list_category">Category Management</a><span class="crumb-step">&gt;</span>
+            		<span>New Category</span>
+            </div>
         </div>
         <div class="result-wrap">
             <div class="result-content">

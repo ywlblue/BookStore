@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,16 +15,10 @@
 <link
 	href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'
 	rel='stylesheet'>
+<link rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/richtext.min.css">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-	
-</script>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
-	
-</script>
 </head>
 <body>
 	<jsp:include page="topbar.jsp"></jsp:include>
@@ -35,8 +29,8 @@
 				<div class="crumb-list">
 					<i class="icon-font"></i><a href="/jscss/admin/design/">Home</a><span
 						class="crumb-step">&gt;</span><a class="crumb-name"
-						href="/jscss/admin/design/">User Management</a><span
-						class="crumb-step">&gt;</span><span>New User</span>
+						href="/list_books">Book Management</a><span class="crumb-step">&gt;</span><span>New
+						Book</span>
 				</div>
 			</div>
 			<div class="result-wrap">
@@ -47,13 +41,11 @@
 							<tbody>
 								<tr>
 									<th width="120"><i class="require-red">*</i>Category：</th>
-									<td>
-										<select name="category" id="category" class="required">
+									<td><select name="category" id="category" class="required">
 											<c:forEach items="${listCategory}" var="category">
 												<option value="${category.categoryId}">${category.name}</option>
 											</c:forEach>
-										</select>
-								</td>
+									</select></td>
 								</tr>
 								<tr>
 									<th><i class="require-red">*</i>Title：</th>
@@ -72,15 +64,14 @@
 								</tr>
 								<tr>
 									<th><i class="require-red">*</i>Publish Date：</th>
-									<td><input class="common-text" name="publish_date" id="publish_date"
-										size="50" type="text" required></td>
+									<td><input class="common-text" name="publish_date"
+										id="publish_date" size="50" type="text" required></td>
 								</tr>
 								<tr>
 									<th><i class="require-red">*</i>Book Image：</th>
-									<td>
-										<input name="book_img" id="book_img" type="file" required><br>
-										<img id="thumbnail" alt="Image Preview" style="width:20%" />
-									</td>
+									<td><input name="book_img" id="book_img" type="file"
+										required><br> <img id="thumbnail"
+										alt="Image Preview" style="width: 20%" /></td>
 								</tr>
 								<tr>
 									<th><i class="require-red">*</i>Price：</th>
@@ -90,7 +81,8 @@
 								<tr>
 									<th><i class="require-red">*</i>Description：</th>
 									<td><textarea name="description" class="common-textarea"
-											id="content" cols="30" style="width: 98%;" rows="10" required></textarea></td>
+											id="description" cols="30" style="width: 98%;" rows="10"
+											required></textarea></td>
 								</tr>
 								<tr>
 									<th></th>
@@ -107,27 +99,35 @@
 
 		</div>
 	</div>
-	<script> 
-        $(document).ready(function() { 
-            $(function() { 
-                $( '#publish_date').datepicker(); 
-                $('#book_img').change(function(){
-                	showImageThumbnail(this);
-                });
-            }); 
-            
-        }) 
-        
-        function showImageThumbnail(fileInput) {
-        	var file = fileInput.files[0];
-        	var reader = new FileReader();
-        	reader.onload = function(e){
-        		$('#thumbnail').attr('src', e.target.result);
-        	};
-        	
-        	reader.readAsDataURL(file);
-        }
-    </script> 
+	<script>
+		$(document).ready(function() {
+			$(function() {
+				$('#publish_date').datepicker();
+				$('#description').richText();
+				$('#book_img').change(function() {
+					showImageThumbnail(this);
+				});
+			});
+
+		})
+
+		function showImageThumbnail(fileInput) {
+			var file = fileInput.files[0];
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#thumbnail').attr('src', e.target.result);
+			};
+
+			reader.readAsDataURL(file);
+		}
+	</script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.richtext.min.js"></script>
+
 </body>
 
 </html>
