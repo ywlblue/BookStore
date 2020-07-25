@@ -1,4 +1,4 @@
-package com.bookstore.controller.admin.book;
+package com.bookstore.controller.frontend;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,18 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.BookServices;
-import com.bookstore.service.CategoryServices;
 
-/**
- * Servlet implementation class ListBookServlet
- */
-@WebServlet("/admin/list_books")
-public class ListBookServlet extends HttpServlet {
+@WebServlet("/view_book")
+public class ViewBookDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BookServices bookServices = new BookServices( request, response);
-		bookServices.listBooks();
+		BookServices bookServices = new BookServices(request, response);
+		bookServices.viewBookDetail();
 	}
 
 }

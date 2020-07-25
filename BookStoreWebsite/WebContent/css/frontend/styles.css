@@ -236,6 +236,12 @@ header .cart .quntity {
 	padding: 1px 0;
 }
 
+header .search-btn {
+	padding: 0;
+	border: none;
+	background: none;
+}
+
 .slider {
 	float: left;
 	width: 100%;
@@ -518,7 +524,7 @@ header .cart .quntity {
 }
 
 .recent-book-sec .item h3 {
-	font-size: 16px;
+	font-size: 18px;
 	line-height: 22px;
 	font-weight: 300;
 	margin-bottom: 10px;
@@ -526,6 +532,18 @@ header .cart .quntity {
 
 .recent-book-sec .item h3 a {
 	color: inherit;
+}
+
+.recent-book-sec .item h4 {
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: 250;
+	margin-bottom: 10px;
+}
+
+.recent-book-sec .item h5 {
+	font-size: 14px;
+	margin-bottom: 10px;
 }
 
 .recent-book-sec .item h6 {
@@ -1280,11 +1298,16 @@ header .cart .quntity {
 	max-width: 520px;
 }
 
-.product-sec .slider-content p {
+.product-sec .slider-content div {
+	margin: 0;
+}
+
+.product-sec .slider-content div p {
 	font-size: 16px;
 	font-weight: 200;
 	line-height: 30px;
-	margin-bottom: 25px;
+	/* margin-bottom: 25px; */
+	text-align: justify;
 }
 
 .product-sec .slider-content ul {
@@ -1311,6 +1334,12 @@ header .cart .quntity {
 	padding-left: 20px;
 	font-weight: 600;
 	text-decoration: line-through;
+	width: 100px;
+}
+
+.product-sec .slider-content ul li span.rating {
+	padding-left: 20px;
+	font-weight: 600;
 	width: 100px;
 }
 
@@ -1342,7 +1371,28 @@ header .cart .quntity {
 	margin-right: 15px;
 }
 
+
 .related-books h2 {
+	font-size: 36px;
+	font-weight: 500;
+	margin-bottom: 40px;
+	text-transform: uppercase;
+	color: #363636;
+}
+
+.book-desciption {
+	margin-top: 20px;
+}
+
+#more {
+	display: none;
+}
+
+.customer-review {
+	margin-bottom: 40px;
+}
+
+.customer-review h2 {
 	font-size: 36px;
 	font-weight: 500;
 	margin-bottom: 40px;

@@ -24,18 +24,17 @@ import org.junit.jupiter.api.Test;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
 
-class BookDAOTest extends BaseDAOTest {
+class BookDAOTest {
 	private static BookDAO bookDAO;
 	@BeforeAll
 	public static void setUpBeforeClass() throws Exception {
-		BaseDAOTest.setUpBeforeClass();
-		bookDAO = new BookDAO(entityManager);
+		bookDAO = new BookDAO();
 		
 	}
 
 	@AfterAll
 	public static void tearDownAfterClass() throws Exception {
-		BaseDAOTest.tearDownAfterClass();
+		bookDAO.close();
 	}
 
 	@Test
@@ -156,6 +155,48 @@ class BookDAOTest extends BaseDAOTest {
 		long totalBooks = bookDAO.count();
 		List<Book> listBooks = bookDAO.listAll();
 		assertEquals(listBooks.size(), totalBooks);
+	}
+	
+	@Test
+	void testDeleteBookSuccess() {
+		Integer bookId = 1;
+		Book deletedBook = bookDAO.delete(bookId);
+		assertEquals(deletedBook.getBookId(), bookId);
+	}
+	
+	@Test
+	void testListByCategory() {
+		Integer categoryId = 1;
+		List<Book> listBooks = bookDAO.listByCategory(categoryId);
+		
+		assertTrue(listBooks.size() > 0);
+	}
+	
+	@Test
+	void testListNewBooks() {
+		List<Book> listNewBooks = bookDAO.listNewBook();
+		assertTrue(listNewBooks.size() <= 4);
+	}
+	
+	@Test
+	void testSearchBookByTitle() {
+		String keyword = "Web";
+		List<Book> books = bookDAO.searchBook(keyword);
+		assertEquals(books.size(), 1);
+	}
+	
+	@Test
+	void testSearchBookByAuthor() {
+		String keyword = "Knight";
+		List<Book> books = bookDAO.searchBook(keyword);
+		assertEquals(books.size(), 1);
+	}
+	
+	@Test
+	void testSearchBookByDescription() {
+		String keyword = "relationship between material goods";
+		List<Book> books = bookDAO.searchBook(keyword);
+		assertEquals(books.size(), 1);
 	}
 
 }

@@ -9,18 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.BookServices;
-import com.bookstore.service.CategoryServices;
 
-/**
- * Servlet implementation class ListBookServlet
- */
-@WebServlet("/admin/list_books")
-public class ListBookServlet extends HttpServlet {
+// get the edit book id and fill in stuff in the edit form
+@WebServlet("/admin/edit_book")
+public class EditBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BookServices bookServices = new BookServices( request, response);
-		bookServices.listBooks();
+		BookServices bookServices = new BookServices(request, response);
+		bookServices.editBook();
 	}
 
 }

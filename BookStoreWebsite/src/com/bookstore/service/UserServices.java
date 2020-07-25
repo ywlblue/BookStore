@@ -15,14 +15,12 @@ import com.bookstore.dao.UserDAO;
 import com.bookstore.entity.Users;
 
 public class UserServices {
-	private EntityManager entityManager;
 	private UserDAO userDAO;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 
-	public UserServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
-		this.entityManager = entityManager;
-		userDAO = new UserDAO(entityManager);
+	public UserServices(HttpServletRequest request, HttpServletResponse response) {
+		userDAO = new UserDAO();
 		this.request = request;
 		this.response = response;
 	}
@@ -88,8 +86,6 @@ public class UserServices {
 		String email = request.getParameter("email");
 		String fullName = request.getParameter("full_name");
 		String password = request.getParameter("password");
-
-		System.out.println(userId + "  " + email + "  " + fullName + "  " + password);
 
 		Users userById = userDAO.get(userId);
 		Users userByEmail = userDAO.findByEmail(email);

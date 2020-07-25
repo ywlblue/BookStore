@@ -11,11 +11,11 @@ import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.CategoryServices;
 
 @WebServlet("/admin/edit_category")
-public class EditCategoryServlet extends BaseServlet {
+public class EditCategoryServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		CategoryServices categoryServices = new CategoryServices(entityManager, request, response);
+		CategoryServices categoryServices = new CategoryServices(request, response);
 		categoryServices.editCategory();
 	}
 }

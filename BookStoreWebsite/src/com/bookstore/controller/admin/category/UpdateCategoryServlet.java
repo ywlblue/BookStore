@@ -12,11 +12,11 @@ import com.bookstore.service.CategoryServices;
 
 
 @WebServlet("/admin/update_category")
-public class UpdateCategoryServlet extends BaseServlet {
+public class UpdateCategoryServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		CategoryServices categoryServices = new CategoryServices(entityManager, request, response);
+		CategoryServices categoryServices = new CategoryServices(request, response);
 		categoryServices.updateCategory();
 	}
 

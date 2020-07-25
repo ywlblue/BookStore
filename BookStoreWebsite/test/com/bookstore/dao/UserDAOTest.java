@@ -17,18 +17,17 @@ import org.junit.jupiter.api.Test;
 
 import com.bookstore.entity.Users;
 
-class UserDAOTest extends BaseDAOTest {
+class UserDAOTest {
 	private static UserDAO userDAO;
 
 	@BeforeAll
 	public static void setUpBeforeClass() throws Exception {
-		BaseDAOTest.setUpBeforeClass();
-		userDAO = new UserDAO(entityManager);
+		userDAO = new UserDAO();
 	}
 
 	@AfterAll
 	public static void tearDownAfterClass() throws Exception {
-		BaseDAOTest.tearDownAfterClass();
+		userDAO.close();
 	}
 
 	@Test

@@ -12,10 +12,10 @@ import com.bookstore.service.BookServices;
 
 
 @WebServlet("/admin/new_book")
-public class NewBookServlet extends BaseServlet {
+public class NewBookServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BookServices bookServices = new BookServices(entityManager, request, response);
+		BookServices bookServices = new BookServices(request, response);
 		bookServices.showBookNewForm();
 	}
 

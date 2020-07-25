@@ -13,19 +13,18 @@ import org.junit.jupiter.api.Test;
 
 import com.bookstore.entity.Category;
 
-public class CategoryDAOTest extends BaseDAOTest{
+public class CategoryDAOTest{
 	
 	private static CategoryDAO categoryDAO;
 	
 	@BeforeAll
 	public static void setUpBeforeClass() throws Exception {
-		BaseDAOTest.setUpBeforeClass();
-		categoryDAO = new CategoryDAO(entityManager);
+		categoryDAO = new CategoryDAO();
 	}
 
 	@AfterAll
 	public static void tearDownAfterClass() throws Exception {
-		BaseDAOTest.tearDownAfterClass();
+		categoryDAO.close();
 	}
 
 

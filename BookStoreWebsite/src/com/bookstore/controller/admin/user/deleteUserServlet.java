@@ -12,11 +12,11 @@ import com.bookstore.service.UserServices;
 
 
 @WebServlet("/admin/delete_user")
-public class deleteUserServlet extends BaseServlet {
+public class deleteUserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		UserServices userServices = new UserServices(entityManager, request, response);
+		UserServices userServices = new UserServices(request, response);
 		userServices.deleteUser();
 	}
 }

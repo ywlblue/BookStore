@@ -12,18 +12,19 @@ import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.BookServices;
 
 
-@WebServlet("/admin/create_book")
+@WebServlet("/admin/update_book")
 @MultipartConfig(
 		fileSizeThreshold = 1024 * 10, // 10KB
 		maxFileSize = 1024 * 300, // 300KB
 		maxRequestSize = 1024 * 1024 // 1MB
 )
-public class CreateBookServlet extends HttpServlet {
+public class UpdateBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		BookServices bookServices = new BookServices(request, response);
-		bookServices.createBook();
+		bookServices.updateBook();
 	}
 
 }

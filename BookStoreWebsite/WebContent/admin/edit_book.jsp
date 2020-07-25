@@ -35,68 +35,76 @@
 				<div class="crumb-list">
 					<i class="icon-font"></i><a href="/jscss/admin/design/">Home</a><span
 						class="crumb-step">&gt;</span><a class="crumb-name"
-						href="/jscss/admin/design/">User Management</a><span
-						class="crumb-step">&gt;</span><span>New User</span>
+						href="/jscss/admin/design/">Book Management</a><span
+						class="crumb-step">&gt;</span><span>Edit User</span>
 				</div>
 			</div>
 			<div class="result-wrap">
 				<div class="result-content">
-					<form action="create_book" method="post" id="bookform"
+					<form action="update_book" method="post" id="bookform"
 						name="bookform" enctype="multipart/form-data">
+						<input type="hidden" name="bookId" value="${book.bookId}">
 						<table class="insert-tab" width="100%">
 							<tbody>
 								<tr>
 									<th width="120"><i class="require-red">*</i>Category：</th>
-									<td>
-										<select name="category" id="category" class="required">
+									<td><select name="category" id="catid" class="required">
 											<c:forEach items="${listCategory}" var="category">
-												<option value="${category.categoryId}">${category.name}</option>
+												<c:if test="${category.categoryId eq book.category.categoryId}">
+													<option value="${category.categoryId}" selected>${category.name}</option>
+												</c:if>
+												<c:if test="${category.categoryId ne book.bookId}">
+													<option value="${category.categoryId}">${category.name}</option>
+												</c:if>
+												
 											</c:forEach>
-										</select>
-								</td>
+									</select></td>
 								</tr>
 								<tr>
 									<th><i class="require-red">*</i>Title：</th>
 									<td><input class="common-text required" id="title"
-										name="title" size="50" value="" type="text" required></td>
+										name="title" size="50" value="${book.title}" type="text" required></td>
 								</tr>
 								<tr>
 									<th><i class="require-red">*</i>Author：</th>
 									<td><input class="common-text" name="author" size="50"
-										type="text" required></td>
+										value="${book.author}" type="text" required></td>
 								</tr>
 								<tr>
 									<th><i class="require-red">*</i>ISBN：</th>
 									<td><input class="common-text" name="isbn" size="50"
-										type="text" required></td>
+										value="${book.isbn}" type="text" required></td>
 								</tr>
 								<tr>
 									<th><i class="require-red">*</i>Publish Date：</th>
 									<td><input class="common-text" name="publish_date" id="publish_date"
-										size="50" type="text" required></td>
+										value="<fmt:formatDate pattern='MM/dd/yyyy' value ='${book.publishDate}'/>" size="50" type="text" required /></td>
 								</tr>
 								<tr>
 									<th><i class="require-red">*</i>Book Image：</th>
 									<td>
-										<input name="book_img" id="book_img" type="file" required><br>
-										<img id="thumbnail" alt="Image Preview" style="width:20%" />
+										<input name="book_img" id="book_img" type="file"><br>
+										<img id="thumbnail" src="data:image/jpg;base64,${book.base64Image}" width="84" alt="Image Preview" style="width:20%"/>
 									</td>
 								</tr>
 								<tr>
 									<th><i class="require-red">*</i>Price：</th>
 									<td><input class="common-text" name="price" size="50"
-										type="text" required></td>
+										value="${book.price}" type="text" required></td>
 								</tr>
 								<tr>
 									<th><i class="require-red">*</i>Description：</th>
-									<td><textarea name="description" class="common-textarea"
-											id="content" cols="30" style="width: 98%;" rows="10" required></textarea></td>
+									<td>
+										<textarea name="description" class="common-textarea"
+										 	id="description" cols="30" style="width: 98%;" rows="10" required>${book.description}
+										</textarea>
+									</td>
 								</tr>
 								<tr>
 									<th></th>
-									<td><input class="btn btn-primary btn6 mr10" value="Save"
-										type="submit"> <input class="btn btn6"
-										onClick="history.go(-1)" value="Cancel" type="button">
+									<td>
+										<input class="btn btn-primary btn6 mr10" value="Save" type="submit"> 
+										<input class="btn btn6" onClick="history.go(-1)" value="Cancel" type="button">
 									</td>
 								</tr>
 							</tbody>

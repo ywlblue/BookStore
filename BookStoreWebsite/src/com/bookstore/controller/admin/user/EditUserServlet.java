@@ -14,10 +14,10 @@ import com.bookstore.service.UserServices;
  * Servlet implementation class EditUserServlet
  */
 @WebServlet("/admin/edit_user")
-public class EditUserServlet extends BaseServlet {
+public class EditUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		UserServices userServices = new UserServices(entityManager, request, response);
+		UserServices userServices = new UserServices(request, response);
 		userServices.editUser();
 	}
 
