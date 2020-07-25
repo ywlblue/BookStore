@@ -198,5 +198,12 @@ class BookDAOTest {
 		List<Book> books = bookDAO.searchBook(keyword);
 		assertEquals(books.size(), 1);
 	}
+	
+	@Test
+	void testCountByCategory() {
+		int categoryId = 4;
+		long numOfBooks = bookDAO.countByCategory(categoryId);
+		assertTrue(numOfBooks > 0);
+	}
 
 }

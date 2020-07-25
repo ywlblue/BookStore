@@ -15,6 +15,9 @@
 <link
 	href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'
 	rel='stylesheet'>
+<link rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/richtext.min.css">
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
@@ -25,6 +28,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
 	
 </script>
+<script type="text/javascript" src="../js/jquery.richtext.min.js"></script>
 </head>
 <body>
 	<jsp:include page="topbar.jsp"></jsp:include>
@@ -118,7 +122,8 @@
 	<script> 
         $(document).ready(function() { 
             $(function() { 
-                $( '#publish_date').datepicker(); 
+                $('#publish_date').datepicker(); 
+                $('#description').richText();
                 $('#book_img').change(function(){
                 	showImageThumbnail(this);
                 });

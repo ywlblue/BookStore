@@ -118,7 +118,15 @@ public class JpaDAO<E> {
 		long result = (long) query.getSingleResult();
 		entityManager.close();
 		return result;
-		
+	}
+	
+	public long countWithNamedQuery(String queryName, String paramName, Object parameters) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		Query query = entityManager.createNamedQuery(queryName);
+		query.setParameter(paramName, parameters);
+		long result = (long) query.getSingleResult();
+		entityManager.close();
+		return result;
 	}
 	
 	public void close() {

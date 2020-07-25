@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
 import com.bookstore.entity.Users;
@@ -116,6 +117,9 @@ public class CategoryServices {
 	public void deleteCategory() throws ServletException, IOException {
 		Integer catId = Integer.parseInt(request.getParameter("id"));
 		Category cat = categoryDAO.get(catId);
+		
+		BookDAO bookDAO = new BookDAO();
+		long numberOfBooks = bookDAO.countByCategory(catId);
 
 		if (cat == null) {
 			String message = "Could not find category with ID " + catId;
@@ -124,10 +128,16 @@ public class CategoryServices {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
 			dispatcher.forward(request, response);
 		} else {
-			categoryDAO.delete(catId);
-
-			String message = "Category has been deleted successfully!";
+			String message = "";
+			if (numberOfBooks > 0) {
+				message = "Could not delete the category (ID: %d) because it currently contains some books"; 
+				message = String.format(message, catId);
+			} else {
+				categoryDAO.delete(catId);
+				message = "Category has been deleted successfully!";
+			}
 			listCategory(message);
+			
 		}
 
 	}
