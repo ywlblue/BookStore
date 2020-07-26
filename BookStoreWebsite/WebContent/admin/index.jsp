@@ -22,9 +22,10 @@
 	            </div>
 	            <div class="result-content">
 	                <div class="short-wrap">
-	                    <a href="insert_user.jsp"><i class="icon-font fas fa-users-cog"></i>New User</a>
+	                    <a href="add_user.jsp"><i class="icon-font fas fa-users-cog"></i>New User</a>
 	                    <a href="add_category.jsp"><i class="icon-font fas fa-tags"></i>New Category</a>
 	                    <a href="new_book"><i class="icon-font fas fa-book-open"></i>New Book</a>
+	                    <a href="new_customer"><i class="icon-font fas fa-users"></i>New Customer</a>
 	                </div>
 	            </div>
 	        </div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,7 @@
 			<div class="crumb-wrap">
 				<div class="crumb-list">
 					<i class="icon-font fa fa-house-user"></i><a href="${pageContext.request.contextPath}/admin/">Home</a><span
-						class="crumb-step">&gt;</span><span class="crumb-name">User
+						class="crumb-step">&gt;</span><span class="crumb-name">Customer
 						Management</span>
 				</div>
 			</div>
@@ -47,7 +48,7 @@
 				<form name="myform" id="myform" method="post">
 					<div class="result-title">
 						<div class="result-list">
-							<a href="add_user.jsp"><i class="icon-font fas fa-users-cog"></i>New User</a> <a
+							<a href="add_customer.jsp"><i class="icon-font fas fa-users"></i>New Customer</a> <a
 								id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>Delete
 								All</a> <a id="updateOrd" href="javascript:void(0)"><i
 								class="icon-font"></i>更新排序</a>
@@ -65,19 +66,25 @@
 								<th>ID</th>
 								<th>Email</th>
 								<th>Full Name</th>
+								<th>City</th>
+								<th>Country</th>
+								<th>Registered Date</th>
 								<th>Action</th>
 							</tr>
-							<c:forEach var="user" items="${listUsers}" varStatus="status">
+							<c:forEach var="customer" items="${listCustomers}" varStatus="status">
 								<tr>
 									<td class="tc"><input name="id[]" value="59"
 										type="checkbox"></td>
 									<td>${status.index + 1}</td>
-									<td>${user.id}</td>
-									<td>${user.email}</td>
-									<td>${user.fullname}</td>
+									<td>${customer.customerId}</td>
+									<td>${customer.email}</td>
+									<td>${customer.fullname}</td>
+									<td>${customer.city}</td>
+									<td>${customer.country}</td>
+									<td><fmt:formatDate pattern='MM/dd/yyyy' value='${customer.registerDate}' /></td>
 									<td>
-										<a class="link-update" href="edit_user?id=${user.id}">Edit</a> 
-										<a class="link-del" href="javascript:confirmDelete(${user.id}, 'user')">Delete</a>
+										<a class="link-update" href="edit_customer?id=${customer.customerId}">Edit</a> 
+										<a class="link-del" href="javascript:confirmDelete(${customer.customerId}, 'customer')">Delete</a>
 									</td>
 								</tr>
 							</c:forEach>
