@@ -47,13 +47,6 @@ public class CustomerServices {
 
 	public void createCustomer() throws ServletException, IOException {
 		String email = request.getParameter("email");
-		String fullName = request.getParameter("full_name");
-		String password = request.getParameter("password");
-		String phone = request.getParameter("phone");
-		String address = request.getParameter("address");
-		String city = request.getParameter("city");
-		String zipCode = request.getParameter("zip_code");
-		String country = request.getParameter("country");
 		
 		// check whether email has been used
 		if (customerDAO.findByEmail(email) != null) {
@@ -67,9 +60,10 @@ public class CustomerServices {
 			// list all customers if new customer created successfully
 			// otherwise, the response will be submitted to message.jsp
 			String message = "A cusomer has been created successfully!";
-
-			Customer newCustomer = new Customer(email, fullName, address, city, country, phone, 
-												zipCode, password, new Date());
+			Customer newCustomer = new Customer();
+			readCustomerFields(newCustomer);
+			newCustomer.setRegisterDate(new Date());
+			
 			customerDAO.create(newCustomer);
 			listCustomers(message);
 		}
@@ -87,22 +81,6 @@ public class CustomerServices {
 		requestDispatcher.forward(request, response);
 		
 	}
-	
-	public void readCustomerField(Customer customer) {
-		
-		String email = request.getParameter("email");
-		String fullName = request.getParameter("full_name");
-		String password = request.getParameter("password");
-		String phone = request.getParameter("phone");
-		String address = request.getParameter("address");
-		String city = request.getParameter("city");
-		String zipCode = request.getParameter("zip_code");
-		String country = request.getParameter("country");
-		
-		Customer newCustomer = new Customer(email, fullName, address, city, country, phone, 
-				zipCode, password, new Date());
-		
-	}
 
 	public void updateCustomer() throws ServletException, IOException {
 		Integer customerId = Integer.parseInt(request.getParameter("customerId"));
@@ -115,23 +93,8 @@ public class CustomerServices {
 					" because there is an existing customer having the same id.";
 		} else {
 			
-			String fullName = request.getParameter("full_name");
-			String password = request.getParameter("password");
-			String phone = request.getParameter("phone");
-			String address = request.getParameter("address");
-			String city = request.getParameter("city");
-			String zipCode = request.getParameter("zip_code");
-			String country = request.getParameter("country");
-			
 			Customer customerById = customerDAO.get(customerId);
-			customerById.setEmail(email);
-			customerById.setFullname(fullName);
-			customerById.setPassword(password);
-			customerById.setPhone(phone);
-			customerById.setAddress(address);
-			customerById.setCity(city);
-			customerById.setZipcode(zipCode);
-			customerById.setCountry(country);
+			readCustomerFields(customerById);
 			
 			customerDAO.update(customerById);
 			String message = "The customer has been updated successfully!";
@@ -156,6 +119,56 @@ public class CustomerServices {
 			customerDAO.delete(customerId);
 			String message = "A customer has been deleted successfully";
 			listCustomers(message);
+		}
+		
+	}
+	
+	public void readCustomerFields(Customer customer) {
+		String email = request.getParameter("email");
+		String fullName = request.getParameter("full_name");
+		String password = request.getParameter("password");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String city = request.getParameter("city");
+		String zipCode = request.getParameter("zip_code");
+		String country = request.getParameter("country");
+		
+		customer.setEmail(email);
+		customer.setFullname(fullName);
+		customer.setPassword(password);
+		customer.setPhone(phone);
+		customer.setAddress(address);
+		customer.setCity(city);
+		customer.setZipcode(zipCode);
+		customer.setCountry(country);
+		
+	}
+
+	public void registerCustomer() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		
+		// check whether email has been used
+		if (customerDAO.findByEmail(email) != null) {
+			String message = "Could not register. Email " + email + "has been registered by other customers.";
+			request.setAttribute("error_msg", message);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("frontend/message.jsp");
+			dispatcher.forward(request, response);
+
+		} else {
+			// list all customers if new customer created successfully
+			// otherwise, the response will be submitted to message.jsp
+			String message = "Register successfully!";
+			
+
+			Customer newCustomer = new Customer();
+			readCustomerFields(newCustomer);
+			newCustomer.setRegisterDate(new Date());
+			customerDAO.create(newCustomer);
+			request.setAttribute("msg", message);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("frontend/message.jsp");
+			dispatcher.forward(request, response);
 		}
 		
 	}
