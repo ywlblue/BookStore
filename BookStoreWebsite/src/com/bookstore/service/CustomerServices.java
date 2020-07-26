@@ -76,4 +76,89 @@ public class CustomerServices {
 
 	}
 
+	public void editCustomer() throws ServletException, IOException {
+		Integer customerId = Integer.parseInt(request.getParameter("id"));
+		Customer customer = customerDAO.get(customerId);
+
+		String editPage = "edit_customer.jsp";
+		request.setAttribute("customer", customer);
+
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		requestDispatcher.forward(request, response);
+		
+	}
+	
+	public void readCustomerField(Customer customer) {
+		
+		String email = request.getParameter("email");
+		String fullName = request.getParameter("full_name");
+		String password = request.getParameter("password");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String city = request.getParameter("city");
+		String zipCode = request.getParameter("zip_code");
+		String country = request.getParameter("country");
+		
+		Customer newCustomer = new Customer(email, fullName, address, city, country, phone, 
+				zipCode, password, new Date());
+		
+	}
+
+	public void updateCustomer() throws ServletException, IOException {
+		Integer customerId = Integer.parseInt(request.getParameter("customerId"));
+		String email = request.getParameter("email");
+		
+		Customer customerByEmail = customerDAO.findByEmail(email);
+		
+		if (customerByEmail != null && customerByEmail.getCustomerId() != customerId) {
+			String message = "Could not update the customer with ID " + customerId + 
+					" because there is an existing customer having the same id.";
+		} else {
+			
+			String fullName = request.getParameter("full_name");
+			String password = request.getParameter("password");
+			String phone = request.getParameter("phone");
+			String address = request.getParameter("address");
+			String city = request.getParameter("city");
+			String zipCode = request.getParameter("zip_code");
+			String country = request.getParameter("country");
+			
+			Customer customerById = customerDAO.get(customerId);
+			customerById.setEmail(email);
+			customerById.setFullname(fullName);
+			customerById.setPassword(password);
+			customerById.setPhone(phone);
+			customerById.setAddress(address);
+			customerById.setCity(city);
+			customerById.setZipcode(zipCode);
+			customerById.setCountry(country);
+			
+			customerDAO.update(customerById);
+			String message = "The customer has been updated successfully!";
+			listCustomers(message);
+		}
+		
+	}
+
+	public void deleteCustomer() throws ServletException, IOException {
+		Integer customerId = Integer.parseInt(request.getParameter("id"));
+		System.out.println(customerId);
+		
+		Customer customer = customerDAO.get(customerId);
+		
+		if (customer == null) {
+			String message = "Could not find customer with ID " + customerId + ", or it might have been deleted";
+			request.setAttribute("error_msg", message);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			customerDAO.delete(customerId);
+			String message = "A customer has been deleted successfully";
+			listCustomers(message);
+		}
+		
+	}
+	
+
 }
