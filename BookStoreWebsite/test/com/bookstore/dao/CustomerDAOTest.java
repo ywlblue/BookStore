@@ -86,5 +86,23 @@ class CustomerDAOTest {
 		long count = customerDAO.count();
 		assertEquals(customerList.size(), count);
 	}
+	
+	@Test
+	void checkLoginSucceed() {
+		String email = "tom@gmail.com";
+		String password = "password...";
+		
+		Customer customer = customerDAO.checkLogin(email, password);
+		assertNotNull(customer);
+	}
+	
+	@Test
+	void checkLoginFail() {
+		String email = "jonny@gmail.com";
+		String password = "password...";
+		
+		Customer customer = customerDAO.checkLogin(email, password);
+		assertNull(customer);
+	}
 
 }

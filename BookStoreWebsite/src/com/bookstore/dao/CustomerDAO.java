@@ -1,6 +1,8 @@
 package com.bookstore.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.bookstore.entity.Customer;
 import com.bookstore.entity.Users;
@@ -43,6 +45,19 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
 		if (listCustomers != null && listCustomers.size() > 0) {
 			return listCustomers.get(0);
 		}
+		return null;
+	}
+	
+	public Customer checkLogin(String email, String password) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("email", email);
+		parameters.put("pass", password);
+		
+		List<Customer> results = super.findWithNamedQuery("Customer.checkLogin", parameters);
+		if (!results.isEmpty()) {
+			return results.get(0);
+		}
+		
 		return null;
 	}
 

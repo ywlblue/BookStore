@@ -173,5 +173,35 @@ public class CustomerServices {
 		
 	}
 	
+	public void showLogin() throws ServletException, IOException {
+		String loginForm = "frontend/login_form.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(loginForm);
+		dispatcher.forward(request, response);
+	}
+
+	public void doLogin() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		Customer customer = customerDAO.checkLogin(email, password);
+		if (customer == null) {
+			String message = "Login Failed. Please check your email and password";
+			
+			request.setAttribute("error-msg", message);
+			showLogin();
+		} else {
+			request.getSession().setAttribute("loggedCustomer", customer.getFullname());
+			showCustomerProfile();
+		}
+		
+	}
+
+	public void showCustomerProfile() throws ServletException, IOException {
+		String profilePage = "frontend/customer_profile.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(profilePage);
+		dispatcher.forward(request, response);
+		
+	}
+	
 
 }

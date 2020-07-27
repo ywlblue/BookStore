@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <header>
         <div class="header-top">
             <div class="container">
@@ -29,12 +30,22 @@
                             <li class="navbar-item">
                                 <a href="about.html" class="nav-link">About</a>
                             </li>
-                            <li class="navbar-item">
-                                <a href="faq.html" class="nav-link">FAQ</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="${pageContext.request.contextPath}/login" class="nav-link">Login</a>
-                            </li>
+                            <c:if test="${loggedCustomer != null}">
+                            <li class="navbar-item dropdown ">
+                            	<div>Welcome, <a href="#" class="dropdown">${loggedCustomer}</a></div>
+                            		<div class="dropdown-content">
+									    <a href="${pageContext.request.contextPath}/view_profile">Profile</a>
+									    <a href="#">Order</a>
+									    <a href="${pageContext.request.contextPath}/logout">Sign Out</a>
+									  </div>
+							</li>
+                            </c:if>
+                            <c:if test="${loggedCustomer == null}">
+                            	<li class="navbar-item dropdown ">
+                                	<a href="${pageContext.request.contextPath}/login" class="nav-link">Login</a>
+                                </li>
+                            </c:if>
+                            
                         </ul>
                         <div class="cart my-2 my-lg-0">
                             <span>
