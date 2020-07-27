@@ -32,7 +32,7 @@
                             </li>
                             <c:if test="${loggedCustomer != null}">
                             <li class="navbar-item dropdown ">
-                            	<div>Welcome, <a href="#" class="dropdown">${loggedCustomer}</a></div>
+                            	<div>Welcome, <a href="#" class="dropdown">${loggedCustomer.fullname}</a></div>
                             		<div class="dropdown-content">
 									    <a href="${pageContext.request.contextPath}/view_profile">Profile</a>
 									    <a href="#">Order</a>

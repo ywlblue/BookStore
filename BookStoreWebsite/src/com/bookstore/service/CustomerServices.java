@@ -133,9 +133,15 @@ public class CustomerServices {
 		String zipCode = request.getParameter("zip_code");
 		String country = request.getParameter("country");
 		
-		customer.setEmail(email);
+		if (email != null || email.equals("")) {
+			customer.setEmail(email);
+		}
+		
 		customer.setFullname(fullName);
-		customer.setPassword(password);
+		if (password != null || password.equals("")) {
+			customer.setPassword(password);
+		}
+		
 		customer.setPhone(phone);
 		customer.setAddress(address);
 		customer.setCity(city);
@@ -190,7 +196,7 @@ public class CustomerServices {
 			request.setAttribute("error-msg", message);
 			showLogin();
 		} else {
-			request.getSession().setAttribute("loggedCustomer", customer.getFullname());
+			request.getSession().setAttribute("loggedCustomer", customer);
 			showCustomerProfile();
 		}
 		
@@ -200,6 +206,15 @@ public class CustomerServices {
 		String profilePage = "frontend/customer_profile.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(profilePage);
 		dispatcher.forward(request, response);
+		
+	}
+
+	public void updateProfile() throws ServletException, IOException {
+		Customer customer = (Customer)request.getSession().getAttribute("loggedCustomer");
+		readCustomerFields(customer);
+		
+		customerDAO.update(customer);
+		showCustomerProfile();
 		
 	}
 	
