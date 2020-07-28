@@ -9,6 +9,8 @@ function confirmDelete(id, controller) {
 		location = 'delete_book?id=' + id;
 	} else if (controller == "customer") {
 		location = 'delete_customer?id=' + id;
+	} else if (controller == "review") {
+		location = 'delete_review?id=' + id;
 	}
 	
 	if (confirm('Are you sure you want to delete ID ' + id + "?")) {

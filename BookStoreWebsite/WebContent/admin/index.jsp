@@ -26,6 +26,8 @@
 	                    <a href="add_category.jsp"><i class="icon-font fas fa-tags"></i>New Category</a>
 	                    <a href="new_book"><i class="icon-font fas fa-book-open"></i>New Book</a>
 	                    <a href="new_customer"><i class="icon-font fas fa-users"></i>New Customer</a>
+	                    <a href="new_review"><i class="icon-font fas fa-comment-dots"></i>New Review</a>
+	                    <a href="new_Order"><i class="icon-font fas fa-shopping-cart"></i>New Order</a>
 	                </div>
 	            </div>
 	        </div>

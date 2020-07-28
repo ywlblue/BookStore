@@ -91,6 +91,10 @@ public class CustomerServices {
 		if (customerByEmail != null && customerByEmail.getCustomerId() != customerId) {
 			String message = "Could not update the customer with ID " + customerId + 
 					" because there is an existing customer having the same id.";
+			request.setAttribute("error_msg", message);
+			String errorPage = "message.jsp";
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(errorPage);
+			requestDispatcher.forward(request, response);
 		} else {
 			
 			Customer customerById = customerDAO.get(customerId);
@@ -111,6 +115,12 @@ public class CustomerServices {
 		
 		if (customer == null) {
 			String message = "Could not find customer with ID " + customerId + ", or it might have been deleted";
+			request.setAttribute("error_msg", message);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		} else if (customer.getReviews() != null) {
+			String message = "Could not delete book with ID " + customerId + " because he/she posted reviews for books";
 			request.setAttribute("error_msg", message);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");

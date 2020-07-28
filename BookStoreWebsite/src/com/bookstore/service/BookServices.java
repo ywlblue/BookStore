@@ -176,6 +176,12 @@ public class BookServices {
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
 			dispatcher.forward(request, response);
+		} else if (book.getReviews() != null) {
+			String message = "Could not delete book with ID " + bookId + " because it has reviews";
+			request.setAttribute("error_msg", message);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
 		} else {
 			bookDAO.delete(bookId);
 			String message = "A book has been deleted successfully";

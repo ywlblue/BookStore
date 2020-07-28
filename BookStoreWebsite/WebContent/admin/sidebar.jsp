@@ -11,8 +11,8 @@
                         <li><a href="list_categories"><i class="icon-font fas fa-tags"></i>Categories</a></li>
                         <li><a href="list_books"><i class="icon-font fas fa-book-open"></i>Books</a></li>
                         <li><a href="list_customers"><i class="icon-font fas fa-users"></i>Customers</a></li>
+                        <li><a href="list_reviews"><i class="icon-font fas fa-comment-dots"></i>Reviews</a></li>
                         <li><a href="#"><i class="icon-font fas fa-shopping-cart"></i>Orders</a></li>
-                        <li><a href="#"><i class="icon-font fas fa-comment-dots"></i>Reviews</a></li>
                     </ul>
                 </li>
                 <li>
