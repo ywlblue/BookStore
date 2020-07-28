@@ -39,18 +39,31 @@
 								<span id="dots">...</span>
 								<span id="more">${more}</span>
 							</c:if>
-						
-						<c:if test="${more != ''}">
-							<span><a href="" id="toggle">Read More</a></span>
-						</c:if>
+
+							<c:if test="${more != ''}">
+								<span><a href="" id="toggle">Read More</a></span>
+							</c:if>
 						</p>
 					</div>
-					<ul>
-						<li><span class="name">Rating</span><span class="clm">:</span>
-							<span class="rating">*****</span></li>
-						<li><span class="name">Price</span><span class="clm">:</span>
-							<span class="price final">$${book.price}</span></li>
-					</ul>
+					<div>
+						<c:forTokens items="${book.ratingStars}" delims="," var="star">
+							<c:if test="${star eq 'on'}">
+								<span><img src="images/rating_on.png" /></span>
+							</c:if>
+							<c:if test="${star eq 'off'}">
+								<span><img src="images/rating_off.png" /></span>
+							</c:if>
+							<c:if test="${star eq 'half'}">
+								<span><img src="images/rating_half.png" /></span>
+							</c:if>
+						</c:forTokens>
+					</div>
+
+					<div>
+						<span class="name">Price</span><span class="clm">:</span> <span
+							class="price final">$${book.price}</span>
+					</div>
+
 					<div class="btn-sec">
 						<button class="btn ">Add To cart</button>
 						<button class="btn black">Buy Now</button>
@@ -69,7 +82,39 @@
 					<button class="btn black">Write a Review</button>
 				</div>
 			</div>
-		</div>
+			
+			<hr />
+			<c:forEach items="${book.reviews}" var="review">
+				<div class="row">
+					<div class="col-md-3">
+						<c:forTokens items="${review.stars}" delims="," var="star">
+							<c:if test="${star eq 'on'}">
+								<span><img src="images/rating_on.png" /></span>
+							</c:if>
+							<c:if test="${star eq 'off'}">
+								<span><img src="images/rating_off.png" /></span>
+							</c:if>
+						</c:forTokens>
+					</div>
+					<div class="col-md-3">
+						<h3>${review.headline}</h3>
+					</div>
+				</div>
+				<br />
+					<div class="row">
+						<div class="col-md-6">
+						<p>by ${review.customer.fullname} on ${review.reviewTime }</p>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-md-6">
+						<p>${review.comment}</p>
+						</div>
+					</div>
+					<hr />
+			</c:forEach>
+		
 	</section>
 	<jsp:include page="footer.jsp"></jsp:include>
 	<script src="js/jquery.min.js"></script>

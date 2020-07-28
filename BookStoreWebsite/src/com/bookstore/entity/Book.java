@@ -2,9 +2,12 @@ package com.bookstore.entity;
 // Generated Jul 10, 2020 9:56:41 AM by Hibernate Tools 5.2.12.Final
 
 import java.util.Base64;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -50,6 +53,7 @@ public class Book implements java.io.Serializable {
 	private String isbn;
 	private byte[] image;
 	private String base64Image;
+	private String ratingSatrs;
 	private float price;
 	private Date publishDate;
 	private Date lastUpdateTime;
@@ -183,9 +187,16 @@ public class Book implements java.io.Serializable {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
 	public Set<Review> getReviews() {
-		return this.reviews;
+		TreeSet<Review> sortedReviews = new TreeSet<>(new Comparator<Review>() {
+			@Override
+			public int compare(Review review1, Review review2) {
+				return review2.getReviewTime().compareTo(review1.getReviewTime());
+			}
+		});
+		sortedReviews.addAll(reviews);
+		return sortedReviews;
 	}
 
 	public void setReviews(Set<Review> reviews) {
@@ -210,6 +221,52 @@ public class Book implements java.io.Serializable {
 	@Transient
 	public void setBase64Image(String base64) {
 		this.base64Image = base64;
+	}
+	
+	@Transient
+	public float getAverageRating() {
+		float averageRating = 0.0f;
+		float sum = 0.0f;
+		
+		if (reviews.isEmpty()) {
+			return 0.0f;
+		}
+		
+		for (Review review : reviews) {
+			sum += review.getRating();
+		}
+		
+		averageRating = sum / reviews.size();
+		return averageRating;
+	}
+	
+	@Transient
+	public String getRatingStars() {
+		float averageRating = getAverageRating();
+		this.ratingSatrs = getRatingString(averageRating);
+		return this.ratingSatrs;
+	}
+	
+	@Transient
+	public String getRatingString(float averageRating) {
+		String result = "";
+		int numberOfStarsOn = (int) averageRating;
+		for (int i = 0; i < numberOfStarsOn; i++) {
+			result += "on,";
+		}
+		
+		int next = numberOfStarsOn + 1;
+		
+		if (averageRating > numberOfStarsOn) {
+			result += "half,";
+		}
+		
+		for (int j = next; j <=5; j++) {
+			result += "off,";
+		}
+		
+		
+		return result.substring(0, result.length() - 1);
 	}
 	
 }

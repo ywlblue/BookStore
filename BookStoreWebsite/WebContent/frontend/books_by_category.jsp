@@ -32,7 +32,19 @@
                     <div class="item">
                         <img src="data:image/jpg;base64,${book.base64Image}" alt="book-img">
                         <h3><a href="view_book?id=${book.bookId}">${book.title}</a></h3>
-                        <h6>Review: *****</h6>
+                        <div>
+                        	<c:forTokens items="${book.ratingStars}" delims="," var="star">
+                        		<c:if test="${star eq 'on'}">
+                        			<span><img src="images/rating_on.png" /></span>
+                        		</c:if>
+                        		<c:if test="${star eq 'off'}">
+                        			<span><img src="images/rating_off.png" /></span>
+                        		</c:if>
+                        		<c:if test="${star eq 'half'}">
+                        			<span><img src="images/rating_half.png" /></span>
+                        		</c:if>
+                        	</c:forTokens>
+                        </div>     
                         <h6><span class="price">${book.price}</span> / <a href="#">Buy Now</a></h6>
                     </div>
                 </div>

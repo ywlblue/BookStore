@@ -48,7 +48,19 @@
 									<a href="view_book?id=${result.bookId}">${result.title}</a>
 								</h3>
 								<h4>By ${result.author}</h4>
-								<h5>Rating: *****</h5>
+								<div>
+									<c:forTokens items="${result.ratingStars}" delims="," var="star">
+										<c:if test="${star eq 'on'}">
+											<span><img src="images/rating_on.png" /></span>
+										</c:if>
+										<c:if test="${star eq 'off'}">
+											<span><img src="images/rating_off.png" /></span>
+										</c:if>
+										<c:if test="${star eq 'half'}">
+											<span><img src="images/rating_half.png" /></span>
+										</c:if>
+									</c:forTokens>
+								</div>
 								<h6>${fn:substring(result.description, 0, 200)}...</h6>
 
 							</div>
