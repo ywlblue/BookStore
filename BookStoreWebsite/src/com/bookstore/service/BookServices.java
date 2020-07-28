@@ -227,12 +227,11 @@ public class BookServices {
 			teaser = description;
 		}
 		
-//		List<Category> listCategory = categoryDAO.listAll();
-		
-//		request.setAttribute("listCategory", listCategory);
+		Integer numOfReview = selectedBook.getReviews().size();
 		request.setAttribute("book", selectedBook);
 		request.setAttribute("teaser", teaser);
 		request.setAttribute("more", more);
+		request.setAttribute("numOfReview", numOfReview);
 		
 		String detailPage = "frontend/book_detail.jsp";
 		

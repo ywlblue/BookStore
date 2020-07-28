@@ -41,9 +41,7 @@ public class HomeServlet extends BaseServlet {
 		
 		BookDAO bookDAO = new BookDAO();
 		List<Book> newBooks = bookDAO.listNewBook();
-		for (Book book : newBooks) {
-			System.out.println(book.getTitle());
-		}
+
 		request.setAttribute("newBooks", newBooks);
 		
 		String homepage = "frontend/index.jsp";

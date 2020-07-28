@@ -57,6 +57,7 @@
 								<span><img src="images/rating_half.png" /></span>
 							</c:if>
 						</c:forTokens>
+						<a href="#">${numOfReview} Review</a>
 					</div>
 
 					<div>
@@ -79,7 +80,7 @@
 					<h2>Customer Reviews</h2>
 				</div>
 				<div class="col-md-3">
-					<button class="btn black">Write a Review</button>
+					<button class="btn black" id="write-review">Write a Review</button>
 				</div>
 			</div>
 			
@@ -137,6 +138,10 @@
 					$("#dots").text("...");
 					$("#more").slideUp();
 				}
+			});
+			
+			$("#write-review").click(function(){
+				window.location = 'write_review?book_id=' + ${book.bookId}; 
 			});
 		});
 	</script>

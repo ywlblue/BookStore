@@ -29,7 +29,7 @@
                     <c:if test="${error_msg != null}">
                     	<div><i color="red">${error_msg}</i></div>
                     </c:if>
-                    <form method="post" class="register-form" id="register-form">
+                    <form method="post" class="register-form" id="register-form" action="${pageContext.request.contextPath}/login">
                         <div class="form-group">
                                 <label for="email">Email :</label>
                                 <input type="text" name="email" id="email" onblur="checkItem(this)" required />

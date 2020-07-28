@@ -94,5 +94,25 @@ class ReviewDAOTest {
 		long count = reviewDAO.count();
 		assertEquals(reviewList.size(), count);
 	}
+	
+	@Test
+	void testFindByCustomerAndBookNotFound() {
+		Integer customerId = 100;
+		Integer bookId = 99;
+		
+		Review result = reviewDAO.findByCustomerAndBook(customerId, bookId);
+		
+		assertNull(result);
+	}
+	
+	@Test
+	void testFindByCustomerAndBookFound() {
+		Integer customerId = 1;
+		Integer bookId = 4;
+		
+		Review result = reviewDAO.findByCustomerAndBook(customerId, bookId);
+		
+		assertNotNull(result);
+	}
 
 }

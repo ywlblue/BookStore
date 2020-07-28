@@ -8,6 +8,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bookstore.dao.CustomerDAO;
 import com.bookstore.entity.Book;
@@ -202,12 +203,20 @@ public class CustomerServices {
 		Customer customer = customerDAO.checkLogin(email, password);
 		if (customer == null) {
 			String message = "Login Failed. Please check your email and password";
-			
 			request.setAttribute("error-msg", message);
 			showLogin();
 		} else {
+			HttpSession session = request.getSession();
+			Object objRedirectURL = session.getAttribute("redirectURL");
 			request.getSession().setAttribute("loggedCustomer", customer);
-			showCustomerProfile();
+			if (objRedirectURL != null) {
+				String redirectURL = (String) objRedirectURL;
+				session.removeAttribute("redirectURL");
+				response.sendRedirect(redirectURL);
+			} else {
+				showCustomerProfile();
+			}
+					
 		}
 		
 	}
