@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +71,8 @@
 								<h2>$${result.price}</h2>
 							</div>
 							<div class="btn-sec">
-								<button class="btn ">Add To cart</button>
+								<div id="jsVariables" data-someText="${result.bookId}"></div>
+								<button class="btn" onclick="add_to_cart(${result.bookId})">Add To cart</button>
 								<button class="btn black">Buy Now</button>
 							</div>
 						</div>
@@ -86,5 +88,10 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/frontend/owl.carousel.min.js"></script>
 	<script src="js/frontend/custom.js"></script>
+	<script>
+		function add_to_cart(bookId) {
+			window.location = 'add_to_cart?book_id=' + bookId;
+		}
+	</script>
 </body>
 </html>

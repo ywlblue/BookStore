@@ -66,7 +66,7 @@
 					</div>
 
 					<div class="btn-sec">
-						<button class="btn ">Add To cart</button>
+						<button class="btn" id="add-to-cart">Add To cart</button>
 						<button class="btn black">Buy Now</button>
 					</div>
 				</div>
@@ -142,6 +142,10 @@
 			
 			$("#write-review").click(function(){
 				window.location = 'write_review?book_id=' + ${book.bookId}; 
+			});
+			
+			$("#add-to-cart").click(function() {
+				window.location = 'add_to_cart?book_id=' + ${book.bookId};
 			});
 		});
 	</script>

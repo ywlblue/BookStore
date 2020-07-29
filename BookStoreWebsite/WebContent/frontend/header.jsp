@@ -48,9 +48,9 @@
                             
                         </ul>
                         <div class="cart my-2 my-lg-0">
-                            <span>
+                            <a href="${pageContext.request.contextPath}/view_cart"><span>
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-                            <span class="quntity">3</span>
+                            <span class="quntity">3</span></a>
                         </div>
                         <form action="search" class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search here..." aria-label="Search">

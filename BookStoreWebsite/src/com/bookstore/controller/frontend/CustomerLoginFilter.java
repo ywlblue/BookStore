@@ -56,21 +56,20 @@ public class CustomerLoginFilter implements Filter {
 			
 			if (queryString != null) {
 				redirectURL = redirectURL.concat("?").concat(queryString);
+				session.setAttribute("redirectURL", redirectURL);
 			}
-			session.setAttribute("redirectURL", redirectURL);
+			
 			String loginPage = "frontend/login_form.jsp";
 			RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginPage);
 			dispatcher.forward(request, response);
 		} else {
-			System.out.println("Customer has been logged in");
-			System.out.println(session.getAttribute("loggedCustomer"));
 			chain.doFilter(request, response);
 		}
 	}
 	
 	private boolean isLoginRequired(String requestURL) {
 		for (String loginRequiredURL : loginRequiredURLs) {
-			if (loginRequiredURL.contains(requestURL)) {
+			if (loginRequiredURL.equals(requestURL)) {
 				return true;
 			}
 		}
