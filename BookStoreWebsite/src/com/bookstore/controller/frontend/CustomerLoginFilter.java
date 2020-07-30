@@ -16,7 +16,8 @@ import javax.servlet.http.HttpSession;
 public class CustomerLoginFilter implements Filter {
 
 	private static final String[] loginRequiredURLs = {
-			"/view_profile", "/update_profile", "/write_review"
+			"/view_profile", "/update_profile", "/write_review",
+			"/checkout", "/place_order"
 	};
     
     public CustomerLoginFilter() {
@@ -56,8 +57,8 @@ public class CustomerLoginFilter implements Filter {
 			
 			if (queryString != null) {
 				redirectURL = redirectURL.concat("?").concat(queryString);
-				session.setAttribute("redirectURL", redirectURL);
 			}
+			session.setAttribute("redirectURL", redirectURL);
 			
 			String loginPage = "frontend/login_form.jsp";
 			RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginPage);

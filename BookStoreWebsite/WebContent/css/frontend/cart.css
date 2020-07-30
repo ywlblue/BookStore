@@ -1,3 +1,16 @@
+.container {
+	margin-bottom: 50px;
+}
+
+.checkout-container {
+	width: 80%;
+}
+
+.shipping-container {
+	margin: 30px auto;
+	width: 40%;
+}
+
 .quantity {
     float: left;
     margin-right: 15px;
@@ -64,6 +77,14 @@
     margin-top: 20px;
 }
 
+#remove-book {
+	background: red;
+}
+
 #update-quantity {
 	margin-bottom: 20px;
+}
+
+#place-order-btn {
+	margin-right: 20px;
 }

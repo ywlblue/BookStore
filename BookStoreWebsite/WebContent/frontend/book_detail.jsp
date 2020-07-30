@@ -66,8 +66,8 @@
 					</div>
 
 					<div class="btn-sec">
-						<button class="btn" id="add-to-cart">Add To cart</button>
-						<button class="btn black">Buy Now</button>
+						<button class="btn btn-primary" id="add-to-cart">Add To cart</button>
+						<button class="btn btn-dark">Buy Now</button>
 					</div>
 				</div>
 			</div>

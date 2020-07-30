@@ -20,6 +20,7 @@
 <script src="https://use.fontawesome.com/c560c025cf.js"></script>
 </head>
 <body>
+	<jsp:include page="header.jsp"></jsp:include>
 	<c:set var="cart" value="${sessionScope['cart']}" />
 	<c:if test="${cart.totalItems == 0}">
 		<h2>There's no item in your cart.</h2>
@@ -29,7 +30,7 @@
 			<div class="card shopping-cart">
 				<div class="card-header bg-dark text-light">
 					<i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping
-					cart <a href="" class="btn btn-outline-info btn-sm pull-right">Continue
+					cart <a href="${pageContext.request.contextPath}/" class="btn btn-outline-info btn-sm pull-right">Continue
 						shopping</a>
 					<div class="clearfix"></div>
 				</div>
@@ -66,7 +67,7 @@
 									</div>
 								</div>
 								<div class="col-2 col-sm-2 col-md-2 text-right">
-									<button type="button" class="btn btn-outline-danger btn-xs" onclick="remove_from_cart(${item.key.bookId})">
+									<button type="button" class="btn btn-danger btn-xs" id="remove-book" onclick="remove_from_cart(${item.key.bookId})">
 										<i class="fa fa-trash" aria-hidden="true"></i>
 									</button>
 								</div>
@@ -87,13 +88,13 @@
 					<div class="col-md-4 col-sm-4 no-padding-right pull-right">
 					
 						<div class="pull-right" style="margin: 5px">
-							<a href="clear_cart" class="btn btn-primary">Clear All</a>
+							<a href="clear_cart" class="btn btn-danger">Clear All</a>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-4 no-padding-right pull-right">
 					
 						<div class="pull-right" style="margin: 5px">
-							<a href="" class="btn btn-primary">Checkout</a>
+							<a href="checkout" class="btn btn-primary">Checkout</a>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-4 no-padding-right pull-right">
@@ -109,7 +110,7 @@
 			</div>
 		</div>
 	</c:if>
-	
+	<jsp:include page="footer.jsp"></jsp:include>
 	<script>
 	function remove_from_cart(bookId) {
 		window.location = 'remove_from_cart?book_id=' + bookId;
