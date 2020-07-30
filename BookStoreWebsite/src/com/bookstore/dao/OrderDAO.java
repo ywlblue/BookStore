@@ -1,9 +1,12 @@
 package com.bookstore.dao;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.bookstore.entity.BookOrder;
+import com.bookstore.entity.Customer;
 
 public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder> {
 
@@ -22,6 +25,19 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 	public BookOrder get(Object orderId) {
 		return super.get(BookOrder.class, orderId);
 	}
+	
+	public BookOrder get(Integer orderId, Integer customerId) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("orderId", orderId);
+		parameters.put("customerId", customerId);
+		List<BookOrder> result = super.findWithNamedQuery("BookOrder.findByIdAdCustomer", parameters);
+		
+		if (!result.isEmpty()) {
+			return result.get(0);
+		}
+		
+		return null;
+	}
 
 	@Override
 	public BookOrder delete(Object id) {
@@ -38,6 +54,10 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 		long count = super.countWithNamedQuery("BookOrder.countAll");
 		return count;
 	}
-
+	
+	public List<BookOrder> listByCustomer(Integer customerId) {
+		
+		return super.findWithNamedQuery("BookOrder.findByCustomer", "customerId", customerId);
+	}
 
 }

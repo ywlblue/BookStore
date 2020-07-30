@@ -1634,4 +1634,36 @@ footer .copy-right .share span:hover {
 	}
 }
 
+/* Order History */
+.order-history-container,
+.order-detail-container {
+	margin-bottom: 50px;
+	text-align: center;	
+}
+
+.after-order-detail-container {
+	margin: 20px auto;
+}
+
+.order-history-title,
+.order-detail-title {
+	margin: 30px auto;
+	font-family: 'Great Vibes', cursive;
+	font-size: 36px;
+}
+
+.order-history {
+	margin: 20px auto;
+}
+
+
+.book-detail-img {
+	padding: 10px 10px;
+}
+
+.book-title {
+	margin: auto 10px;
+	padding: 30px 10px;
+}
+
 /*# sourceMappingURL=styles.css.map */

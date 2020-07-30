@@ -35,7 +35,7 @@
                             	<div>Welcome, <a href="#" class="dropdown">${loggedCustomer.fullname}</a></div>
                             		<div class="dropdown-content">
 									    <a href="${pageContext.request.contextPath}/view_profile">Profile</a>
-									    <a href="#">Order</a>
+									    <a href="${pageContext.request.contextPath}/view_orders">Order</a>
 									    <a href="${pageContext.request.contextPath}/logout">Sign Out</a>
 									  </div>
 							</li>

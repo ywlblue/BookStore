@@ -114,6 +114,17 @@ class OrderDAOTest {
 	}
 	
 	@Test
+	void testGetBookOrderByIdAndCustomer() {
+		Integer orderId = 6;
+		Integer customerId = 1;
+		
+		BookOrder order = orderDAO.get(orderId, customerId);
+		
+		assertEquals(1, order.getOrderDetails().size());
+	}
+	
+	
+	@Test
 	void testDeleteBookOrderFail() {
 		assertThrows(EntityNotFoundException.class, () -> { 
 			Integer orderId = 99;
@@ -141,6 +152,20 @@ class OrderDAOTest {
 		long count = orderDAO.count();
 		List<BookOrder> listOrder = orderDAO.listAll();
 		assertEquals(count, listOrder.size());
+	}
+	
+	@Test
+	void testListByCustomerNoOrders() {
+		Integer customerId = 4;
+		List<BookOrder> listOrder = orderDAO.listByCustomer(customerId);
+		assertEquals(0, listOrder.size());
+	}
+	
+	@Test
+	void testListByCustomerHasOrders() {
+		Integer customerId = 3;
+		List<BookOrder> listOrder = orderDAO.listByCustomer(customerId);
+		assertEquals(1, listOrder.size());
 	}
 
 }
