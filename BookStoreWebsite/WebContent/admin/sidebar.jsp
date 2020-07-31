@@ -15,15 +15,7 @@
                         <li><a href="list_orders"><i class="icon-font fas fa-shopping-cart"></i>Orders</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#"><i class="icon-font">&#xe003;</i>Data</a>
-                    <ul class="sub-menu">
-                        <li><a href="design.html"><i class="icon-font">&#xe008;</i>Recent Sales</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe005;</i>Recent Reviews</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe006;</i>Statistics</a></li>
-                    </ul>
-                </li>
             </ul>
         </div>
     </div>
-    <script src="https://kit.fontawesome.com/c852dd71e5.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c852dd71e5.js"></script>

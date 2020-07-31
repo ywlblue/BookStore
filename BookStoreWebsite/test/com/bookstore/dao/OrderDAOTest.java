@@ -167,5 +167,11 @@ class OrderDAOTest {
 		List<BookOrder> listOrder = orderDAO.listByCustomer(customerId);
 		assertEquals(1, listOrder.size());
 	}
+	
+	@Test
+	void testListMostRecentSales() {
+		List<BookOrder> listOrder = orderDAO.listMostRecentSales();
+		assertTrue(listOrder.size() > 0 && listOrder.size() <= 3);
+	}
 
 }

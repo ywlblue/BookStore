@@ -61,7 +61,7 @@
 						</h4>
 					</c:if>
 					<div class="result-content">
-						<table class="result-tab" width="100%">
+						<table class="result-tab">
 							<tr>
 								<th class="tc" width="5%"><input class="allChoose" name=""
 									type="checkbox"></th>
