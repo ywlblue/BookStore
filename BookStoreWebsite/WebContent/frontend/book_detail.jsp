@@ -80,7 +80,7 @@
 					<h2>Customer Reviews</h2>
 				</div>
 				<div class="col-md-3">
-					<button class="btn black" id="write-review">Write a Review</button>
+					<button class="btn btn-warning" id="write-review">Write a Review</button>
 				</div>
 			</div>
 			

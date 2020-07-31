@@ -205,5 +205,17 @@ class BookDAOTest {
 		long numOfBooks = bookDAO.countByCategory(categoryId);
 		assertTrue(numOfBooks > 0);
 	}
+	
+	@Test
+	void testListBestSellingBook() {
+		List<Book> books = bookDAO.listBestSellingBook();
+		assertTrue(books.size() > 0 && books.size() <= 10);
+	}
+	
+	@Test
+	void testListMostFavoredBook() {
+		List<Book> books = bookDAO.listMostFavoredBook();
+		assertTrue(books.size() > 0 && books.size() <= 10);
+	}
 
 }

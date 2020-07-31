@@ -99,7 +99,7 @@
                         		</c:if>
                         	</c:forTokens>
                         </div>     
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
+                        <h6><span class="price">$19</span> / <a href="${pageContext.request.contextPath}/add_to_cart?book_id=${book.bookId}">Add to Cart</a></h6>
                     </div>
                 </div>
             	</c:forEach>
@@ -114,82 +114,33 @@
                 <hr>
             </div>
             <div class="row">
+            	<c:forEach items="${bestSellingBooks}" var="bestSellingBook">
                 <div class="col-lg-2 col-md-3 col-sm-4">
                     <div class="item">
-                        <img src="images/r1.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
+                        <a href="view_book?id=${bestSellingBook.bookId}"><img src="data:image/jpg;base64,${bestSellingBook.base64Image}" alt="book-img" width="200" height="280"></a>
+                        <h3 ><a href="view_book?id=${bestSellingBook.bookId}">${bestSellingBook.title}</a></h3>
+                        <h6>By ${bestSellingBook.author}</h6>
+                        <div>
+                        	<c:forTokens items="${bestSellingBook.ratingStars}" delims="," var="star">
+                        		<c:if test="${star eq 'on'}">
+                        			<span><img src="images/rating_on.png" /></span>
+                        		</c:if>
+                        		<c:if test="${star eq 'off'}">
+                        			<span><img src="images/rating_off.png" /></span>
+                        		</c:if>
+                        		<c:if test="${star eq 'half'}">
+                        			<span><img src="images/rating_half.png" /></span>
+                        		</c:if>
+                        	</c:forTokens>
+                        </div>     
+                        <h6><span class="price">${bestSellingBook.price}</span> / <a href="${pageContext.request.contextPath}/add_to_cart?book_id=${bestSellingBook.bookId}">Add to Cart</a></h6>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r2.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r3.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r4.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r5.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r1.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r2.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r3.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r4.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r5.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-            </div>
-            <div class="btn-sec">
-                <a href="#" class="btn gray-btn">view all books</a>
+                </c:forEach>
             </div>
         </div>
     </section>
+    
     <section class="recent-book-sec">
         <div class="container">
             <div class="title">
@@ -197,82 +148,33 @@
                 <hr>
             </div>
             <div class="row">
+            	<c:forEach items="${mostFavoredBooks}" var="mostFavoredBook">
                 <div class="col-lg-2 col-md-3 col-sm-4">
                     <div class="item">
-                        <img src="images/r1.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
+                        <a href="view_book?id=${mostFavoredBook.bookId}"><img src="data:image/jpg;base64,${mostFavoredBook.base64Image}" alt="book-img" width="200" height="280"></a>
+                        <h3 ><a href="view_book?id=${mostFavoredBook.bookId}">${mostFavoredBook.title}</a></h3>
+                        <h6>By ${mostFavoredBook.author}</h6>
+                        <div>
+                        	<c:forTokens items="${mostFavoredBook.ratingStars}" delims="," var="star">
+                        		<c:if test="${star eq 'on'}">
+                        			<span><img src="images/rating_on.png" /></span>
+                        		</c:if>
+                        		<c:if test="${star eq 'off'}">
+                        			<span><img src="images/rating_off.png" /></span>
+                        		</c:if>
+                        		<c:if test="${star eq 'half'}">
+                        			<span><img src="images/rating_half.png" /></span>
+                        		</c:if>
+                        	</c:forTokens>
+                        </div>     
+                        <h6><span class="price">${mostFavoredBook.price}</span> / <a href="${pageContext.request.contextPath}/add_to_cart?book_id=${mostFavoredBook.bookId}">Add to Cart</a></h6>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r2.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r3.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r4.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r5.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r1.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r2.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r3.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r4.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="images/r5.jpg" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-            </div>
-            <div class="btn-sec">
-                <a href="#" class="btn gray-btn">view all books</a>
+                </c:forEach>
             </div>
         </div>
     </section>
+    
     <section class="features-sec">
         <div class="container">
             <ul>
