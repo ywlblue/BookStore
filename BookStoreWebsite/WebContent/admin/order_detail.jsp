@@ -19,8 +19,8 @@
 			<div class="crumb-wrap">
 				<div class="crumb-list">
 					<i class="icon-font fa fa-house-user"></i><a href="${pageContext.request.contextPath}/admin/">Home</a><span
-						class="crumb-step">&gt;</span><span class="crumb-name">Order
-						Management</span></a><span class="crumb-step">&gt;</span><span class="crumb-name">Order Deatil</span>
+						class="crumb-step">&gt;</span><span class="crumb-name"><a href="${pageContext.request.contextPath}/admin/list_orders">Order
+						Management</a></span></a><span class="crumb-step">&gt;</span><span class="crumb-name">Order Deatil</span>
 				</div>
 			</div>
 			<br>
@@ -108,9 +108,9 @@
 			</div>
 			<br>
 			<div align="center">
-				<a class="link-update" href="edit_order?id=${order.orderId}">Edit</a>		
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;								
-				<a class="link-del" href="javascript:confirmDelete(${order.orderId}, 'order')">Delete</a>
+				<a href="edit_order?id=${order.orderId}">Edit</a>
+				<a href="${pageContext.request.contextPath}/admin/list_orders">Cancel</a>
+				<a href="javascript:confirmDelete(${order.orderId}, 'order')">Delete</a>		
 			</div>
 			<br>
 		</div>

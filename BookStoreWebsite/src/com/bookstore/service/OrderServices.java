@@ -151,30 +151,105 @@ public class OrderServices {
 
 		HttpSession session = request.getSession();
 		Customer customer = (Customer) session.getAttribute("loggedCustomer");
-		
-		
+
 		BookOrder order = orderDAO.get(orderId, customer.getCustomerId());
-		
+
 		request.setAttribute("order", order);
 
 		String detailPage = "frontend/order_detail.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(detailPage);
 		dispatcher.forward(request, response);
 
-//		if (order == null) {
-//			String message = "Could not find order with ID " + orderId;
-//			request.setAttribute("error_msg", message);
-//
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
-//			dispatcher.forward(request, response);
-//		} else {
-//			request.setAttribute("order", order);
-//
-//			String detailPage = "frontend/order_detail.jsp";
-//			RequestDispatcher dispatcher = request.getRequestDispatcher(detailPage);
-//			dispatcher.forward(request, response);
-//		}
+	}
 
+	public void showEditOrderForm() throws ServletException, IOException {
+		Integer orderId = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
+		Object isPendingBook = session.getAttribute("NewBookPendingToAddToOrder");
+		
+		if (isPendingBook == null) {
+			BookOrder order = orderDAO.get(orderId);
+			session.setAttribute("order", order);
+		
+		} else {
+			session.removeAttribute("NewBookPendingToAddToOrder");
+		}
+		
+		String editOrderPage = "edit_order.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(editOrderPage);
+		dispatcher.forward(request, response);
+
+	}
+
+	public void updateOrder() throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		BookOrder order = (BookOrder) session.getAttribute("order");
+		
+		String recipientName = request.getParameter("recipientName");
+		String recipientPhone = request.getParameter("recipientPhone");
+		String shippingAddress = request.getParameter("shippingAddress");
+		String paymentMethod = request.getParameter("paymentMethod");
+		String orderStatus = request.getParameter("orderStatus");
+		
+		order.setRecipientName(recipientName);
+		order.setRecipientPhone(recipientPhone);
+		order.setShippingAddress(shippingAddress);
+		order.setPaymentMethod(paymentMethod);
+		order.setStatus(orderStatus);
+		
+		String[] arrayBookId = request.getParameterValues("bookId");
+		String[] arrayPrice = request.getParameterValues("price");
+		String[] arrayQuantity = new String[arrayBookId.length];
+		
+		for (int i = 1; i <= arrayQuantity.length; i++) {
+			arrayQuantity[i - 1] = request.getParameter("quantity" + i);
+		}
+		
+		Set<OrderDetail> orderDetails = order.getOrderDetails();
+		orderDetails.clear();
+		
+		float totalAmount = 0;
+		
+		for (int i = 0; i < arrayQuantity.length; i++) {
+			int bookId = Integer.parseInt(arrayBookId[i]);
+			int quantity = Integer.parseInt(arrayQuantity[i]);
+			float price = Float.parseFloat(arrayPrice[i]);
+			
+			float subtotal = price * quantity;
+			
+			OrderDetail orderDetail = new OrderDetail();
+			orderDetail.setBook(new Book(bookId));
+			orderDetail.setQuantity(quantity);
+			orderDetail.setSubtotal(subtotal);
+			orderDetail.setBookOrder(order);
+			
+			orderDetails.add(orderDetail);
+			totalAmount += subtotal;
+		}
+		
+		order.setTotal(totalAmount);
+		
+		orderDAO.update(order);
+		
+		String message = "The order has been updated successfully";
+		listOrders(message);
+	}
+
+	public void deleteOrder() throws ServletException, IOException {
+		Integer orderId = Integer.parseInt(request.getParameter("id"));
+		BookOrder order = orderDAO.get(orderId);
+		
+		if (order == null) {
+			String message = "Could not find order with ID " + orderId;
+			request.setAttribute("error_msg", message);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			orderDAO.delete(orderId);
+			String message = "Delete an order successfully!";
+			listOrders(message);
+		}
 	}
 
 }
