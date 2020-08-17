@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,8 +34,12 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><i class="require-red">*</i>Full Name：</th>
-                                <td><input class="common-text" name="full_name" size="50" type="text" required></td>
+                                <th><i class="require-red">*</i>First Name：</th>
+                                <td><input class="common-text" name="first_name" size="50" type="text" required></td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>Last Name：</th>
+                                <td><input class="common-text" name="last_name" size="50" type="text" required></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>Password：</th>
@@ -49,12 +54,20 @@
                                 <td><input class="common-text" name="phone" size="50" type="text" required></td>
                             </tr>
                             <tr>
-                                <th><i class="require-red">*</i>Address: </th>
-                                <td><input class="common-text" name="address" size="50" type="text" required></td>
+                                <th><i class="require-red">*</i>Address Line 1: </th>
+                                <td><input class="common-text" name="addressLine1" size="50" type="text" required></td>
+                            </tr>
+                            <tr>
+                                <th></i>Address Line 2: </th>
+                                <td><input class="common-text" name="addressLine2" size="50" type="text"></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>City：</th>
                                 <td><input class="common-text" name="city" size="50" type="text" required></td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>State：</th>
+                                <td><input class="common-text" name="state" size="50" type="text" required></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>Zip Code：</th>
@@ -62,7 +75,13 @@
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>Country: </th>
-                                <td><input class="common-text" name="country" size="50" type="text" required></td>
+                                <td>
+                                	<select name="country" id="country" class="common-text">
+											<c:forEach var="country" items="${mapCountries}">
+												<option value="${country.value}">${country.key}</option>
+											</c:forEach>
+										</select>
+                                </td>
                             </tr>
                             <tr>
                                 <th></th>

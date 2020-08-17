@@ -28,6 +28,7 @@
 				<div class="title">
 					<h2>No results for ${keyword}</h2>
 				</div>
+				<a href="${pageContext.request.contextPath}/"><button class="btn btn-primary">Go Browsing!</button></a>
 			</c:if>
 			<c:if test="${fn:length(results) > 0}">
 				<div class="title">

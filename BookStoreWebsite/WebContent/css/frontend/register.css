@@ -53,8 +53,8 @@ figure {
 }
 
 .signup-img {
-	object-fit: fill;
-	max-height: 100%;
+  	object-fit: cover;
+	
 }
 
 .review-book-info {

@@ -1,7 +1,7 @@
 <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="address">
                         <h4>Our Address</h4>
                         <h6>The BookStore Theme, 4th Store
@@ -16,7 +16,7 @@
                         <h6>​Sunday: 8am - 11pm</h6>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="navigation">
                         <h4>Navigation</h4>
                         <ul>
@@ -34,29 +34,6 @@
                             <li><a href="privacy-policy.html">Privacy</a></li>
                             <li><a href="faq.html">FAQ’s</a></li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="form">
-                        <h3>Quick Contact us</h3>
-                        <h6>We are now offering some good discount 
-                            on selected books go and shop them</h6>
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input placeholder="Name" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" placeholder="Email" required>
-                                </div>
-                                <div class="col-md-12">
-                                    <textarea placeholder="Messege"></textarea>
-                                </div>
-                                <div class="col-md-12">
-                                    <button class="btn black">Alright, Submit</button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

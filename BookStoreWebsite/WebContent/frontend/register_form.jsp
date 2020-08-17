@@ -26,49 +26,7 @@
                 <div class="signup-form">
                     <div class="form-title">Registration</div>
                     <form action="${pageContext.request.contextPath}/register_customer" method="post" class="register-form" id="register-form">
-                       <div class="form-group">
-                       		<label for="full_name">Full Name :</label>
-                       		<input type="text" name="full_name" id="full_name" />
-                       </div>
-                        
-						<div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" id="email" />
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password :</label>
-                            <input type="password" name="password" id="password" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="re-password">Repeat Password :</label>
-                            <input type="password" name="re-password" id="re-password" oninput="checkItem(this)"
-                                required required/>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number :</label>
-                            <input type="text" name="phone" id="phone" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address :</label>
-                            <input type="text" name="address" id="address" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="city">City :</label>
-                            <input type="text" name="city" id="city" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="zip_code">Zip Code :</label>
-                            <input type="text" name="zip_code" id="zip_code" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="country">Country :</label>
-                            <input type="text" name="country" id="country" required/>
-                        </div>
-                        <div class="form-submit">
-                            <input type="submit" value="Reset All" class="submit" name="reset" id="reset" />
-                            <input type="submit" value="Register" class="submit" name="submit" id="submit" />
-                        </div>
+                    	<jsp:include page="customer_form.jsp"></jsp:include>
                     </form>
                 </div>
             </div>

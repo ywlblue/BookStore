@@ -53,7 +53,7 @@
 							<c:forEach items="${mostRecentOrders}" var="mostRecentOrder" varStatus="status">
 							<tr>
 								<th scope="row"><a href="view_order?id=${mostRecentOrder.orderId}">${mostRecentOrder.orderId}</a></th>
-								<td>${mostRecentOrder.customer.fullname}</td>
+								<td>${mostRecentOrder.customer.firstname}</td>
 								<td>${mostRecentOrder.bookCopies}</td>
 								<td>${mostRecentOrder.total}</td>
 								<td>${mostRecentOrder.paymentMethod}</td>
@@ -88,7 +88,7 @@
 							<th scope="row">${mostRecentReview.book.title}</th>
 							<td>${mostRecentReview.rating}</td>
 							<td><a href="edit_review?id=${mostRecentReview.reviewId}">${mostRecentReview.headline}</a></td>
-							<td>${mostRecentReview.customer.fullname}</td>
+							<td>${mostRecentReview.customer.firstname}</td>
 							<td>${mostRecentReview.reviewTime}</td>
 						</tr>
 					</c:forEach>

@@ -27,15 +27,17 @@ class CustomerDAOTest {
 	@Test
 	void testCreateCustomer() {
 		Customer customer = new Customer();
-		customer.setEmail("tom@gmail.com");
-		customer.setFullname("Tom Eagar");
-		customer.setCity("New York");
+		customer.setEmail("amy.fowler@gmail.com");
+		customer.setFirstname("Amy");
+		customer.setLastname("Folwer");
+		customer.setCity("Pasadena");
+		customer.setState("California");
 		customer.setCountry("United States");
-		customer.setAddress("100 Maple street");
+		customer.setAddressLine1("351 S. Hudson Ave");
 		customer.setRegisterDate(new Date());
-		customer.setZipcode("10000");
-		customer.setPassword("password");
-		customer.setPhone("5139478821");
+		customer.setZipcode("91109");
+		customer.setPassword("biology");
+		customer.setPhone("6263963600");
 		
 		Customer createdCustomer = customerDAO.create(customer);
 		assertNotNull(createdCustomer);
@@ -43,20 +45,14 @@ class CustomerDAOTest {
 
 	@Test
 	void testUpdateCustomer() {
-		Customer customer = new Customer();
-		customer.setCustomerId(1);
-		customer.setEmail("tom@gmail.com");
-		customer.setFullname("Tom Eagar");
-		customer.setCity("New York");
-		customer.setCountry("United States");
-		customer.setAddress("100 Maple street");
-		customer.setRegisterDate(new Date());
-		customer.setZipcode("10503");
-		customer.setPassword("password...");
-		customer.setPhone("5139478821");
+		Integer customerId = 5;
+		Customer customer = customerDAO.get(customerId);
+		
+		customer.setPhone("6267955309");
 		
 		Customer createdCustomer = customerDAO.update(customer);
-		assertEquals(createdCustomer.getZipcode(), "10503");
+		
+		assertEquals(createdCustomer.getPhone(), "6267955309");
 		
 	}
 

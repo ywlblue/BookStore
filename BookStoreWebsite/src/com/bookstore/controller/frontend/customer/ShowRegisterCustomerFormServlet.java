@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bookstore.service.CustomerServices;
+
 
 @WebServlet("/register")
 public class ShowRegisterCustomerFormServlet extends HttpServlet {
@@ -20,9 +22,10 @@ public class ShowRegisterCustomerFormServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		String registerForm = "frontend/register_form.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(registerForm);
-		dispatcher.forward(request, response);
+		
+		CustomerServices customerServices = new CustomerServices(request, response);
+		customerServices.showRegisterForm();
+		
 	}
 
 }

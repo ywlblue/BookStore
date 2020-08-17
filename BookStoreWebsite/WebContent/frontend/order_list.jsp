@@ -26,7 +26,7 @@
 		<c:if test="${fn:length(listOrders) == 0}">
 			<div align="center" class="order-history-title">
 				<h3>You don't have any orders yet.</h3>
-				<button class="btn btn-primary">Go Shopping!</button>
+				<a href="${pageContext.request.contextPath}/"><button class="btn btn-primary">Go Shopping!</button></a>
 			</div>
 		</c:if>
 		<c:if test="${fn:length(listOrders) > 0}">

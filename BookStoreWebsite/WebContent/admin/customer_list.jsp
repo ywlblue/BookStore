@@ -48,7 +48,7 @@
 				<form name="myform" id="myform" method="post">
 					<div class="result-title">
 						<div class="result-list">
-							<a href="add_customer.jsp"><i class="icon-font fas fa-users"></i>New Customer</a> <a
+							<a href="new_customer"><i class="icon-font fas fa-users"></i>New Customer</a> <a
 								id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>Delete
 								All</a> <a id="updateOrd" href="javascript:void(0)"><i
 								class="icon-font"></i>更新排序</a>
@@ -65,8 +65,10 @@
 								<th>Index</th>
 								<th>ID</th>
 								<th>Email</th>
-								<th>Full Name</th>
+								<th>First Name</th>
+								<th>Last Name</th>
 								<th>City</th>
+								<th>State</th>
 								<th>Country</th>
 								<th>Registered Date</th>
 								<th>Action</th>
@@ -78,9 +80,11 @@
 									<td>${status.index + 1}</td>
 									<td>${customer.customerId}</td>
 									<td>${customer.email}</td>
-									<td>${customer.fullname}</td>
+									<td>${customer.firstname}</td>
+									<td>${customer.lastname}</td>
 									<td>${customer.city}</td>
-									<td>${customer.country}</td>
+									<td>${customer.state}</td>
+									<td>${customer.countryName}</td>
 									<td><fmt:formatDate pattern='MM/dd/yyyy' value='${customer.registerDate}' /></td>
 									<td>
 										<a class="link-update" href="edit_customer?id=${customer.customerId}">Edit</a> 

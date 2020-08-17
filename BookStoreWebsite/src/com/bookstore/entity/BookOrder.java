@@ -39,39 +39,44 @@ public class BookOrder implements java.io.Serializable {
 	private Integer orderId;
 	private Customer customer;
 	private Date orderDate;
-	private String shippingAddress;
-	private String recipientName;
+	private String addressLine1;
+	private String addressLine2;
+	private String firstname;
+	private String lastname;
+	private String city;
+	private String state;
+	private String country;
 	private String recipientPhone;
 	private String paymentMethod;
+	
 	private float total;
+	private float subtotal;
+	private float shippingFee;
+	private float tax;
 	private String status;
 	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>(0);
 
 	public BookOrder() {
 	}
+	
+	
 
-	public BookOrder(Customer customer, Date orderDate, String shippingAddress, String recipientName,
+	public BookOrder(Customer customer, Date orderDate, String addressLine1, String addressLine2, String recipientName,
 			String recipientPhone, String paymentMethod, float total, String status) {
 		this.customer = customer;
 		this.orderDate = orderDate;
-		this.shippingAddress = shippingAddress;
-		this.recipientName = recipientName;
+		this.addressLine1 = addressLine1;
+		this.addressLine2 = addressLine2;
+		this.firstname = recipientName;
 		this.recipientPhone = recipientPhone;
 		this.paymentMethod = paymentMethod;
 		this.total = total;
 		this.status = status;
 	}
 
-	public BookOrder(Customer customer, Date orderDate, String shippingAddress, String recipientName,
+	public BookOrder(Customer customer, Date orderDate, String addressLine1, String addressLine2, String recipientName,
 			String recipientPhone, String paymentMethod, float total, String status, Set<OrderDetail> orderDetails) {
-		this.customer = customer;
-		this.orderDate = orderDate;
-		this.shippingAddress = shippingAddress;
-		this.recipientName = recipientName;
-		this.recipientPhone = recipientPhone;
-		this.paymentMethod = paymentMethod;
-		this.total = total;
-		this.status = status;
+		this(customer, orderDate, addressLine1, addressLine2, recipientName, recipientPhone, paymentMethod, total, status);
 		this.orderDetails = orderDetails;
 	}
 
@@ -106,24 +111,52 @@ public class BookOrder implements java.io.Serializable {
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
-
-	@Column(name = "shipping_address", nullable = false, length = 256)
-	public String getShippingAddress() {
-		return this.shippingAddress;
+	
+	@Column(name = "r_address_line1", nullable = false, length = 256)
+	public String getAddressLine1() {
+		return addressLine1;
 	}
 
-	public void setShippingAddress(String shippingAddress) {
-		this.shippingAddress = shippingAddress;
+
+	public void setAddressLine1(String addressLine1) {
+		this.addressLine1 = addressLine1;
 	}
 
-	@Column(name = "recipient_name", nullable = false, length = 30)
-	public String getRecipientName() {
-		return this.recipientName;
+
+	@Column(name = "r_address_line2", nullable = false, length = 256)
+	public String getAddressLine2() {
+		return addressLine2;
 	}
 
-	public void setRecipientName(String recipientName) {
-		this.recipientName = recipientName;
+
+
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
 	}
+
+
+	@Column(name = "first_name", nullable = false, length = 30)
+	public String getFirstname() {
+		return firstname;
+	}
+	
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+
+	@Column(name = "last_name", nullable = false, length = 30)
+	public String getLastname() {
+		return lastname;
+	}
+
+
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+
 
 	@Column(name = "recipient_phone", nullable = false, length = 15)
 	public String getRecipientPhone() {

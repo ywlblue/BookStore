@@ -25,14 +25,11 @@
                                 <a href="${pageContext.request.contextPath}/" class="nav-link">Home</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="shop.html" class="nav-link">Shop</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="about.html" class="nav-link">About</a>
+                                <a href="${pageContext.request.contextPath}/admin/" class="nav-link">Admin</a>
                             </li>
                             <c:if test="${loggedCustomer != null}">
                             <li class="navbar-item dropdown ">
-                            	<div>Welcome, <a href="#" class="dropdown">${loggedCustomer.fullname}</a></div>
+                            	<div>Welcome, <a href="#" class="dropdown">${loggedCustomer.firstname}</a></div>
                             		<div class="dropdown-content">
 									    <a href="${pageContext.request.contextPath}/view_profile">Profile</a>
 									    <a href="${pageContext.request.contextPath}/view_orders">Order</a>

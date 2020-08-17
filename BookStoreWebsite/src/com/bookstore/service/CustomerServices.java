@@ -3,6 +3,9 @@ package com.bookstore.service;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -78,6 +81,8 @@ public class CustomerServices {
 		String editPage = "edit_customer.jsp";
 		request.setAttribute("customer", customer);
 
+		generateCountryList();
+		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
 		requestDispatcher.forward(request, response);
 		
@@ -136,11 +141,14 @@ public class CustomerServices {
 	
 	public void readCustomerFields(Customer customer) {
 		String email = request.getParameter("email");
-		String fullName = request.getParameter("full_name");
+		String firstName = request.getParameter("first_name");
+		String lastName = request.getParameter("last_name");
 		String password = request.getParameter("password");
 		String phone = request.getParameter("phone");
-		String address = request.getParameter("address");
+		String address1 = request.getParameter("addressLine1");
+		String address2 = request.getParameter("addressLine2");
 		String city = request.getParameter("city");
+		String state = request.getParameter("state");
 		String zipCode = request.getParameter("zip_code");
 		String country = request.getParameter("country");
 		
@@ -148,14 +156,17 @@ public class CustomerServices {
 			customer.setEmail(email);
 		}
 		
-		customer.setFullname(fullName);
+		customer.setFirstname(firstName);
+		customer.setLastname(lastName);
 		if (password != null || password.equals("")) {
 			customer.setPassword(password);
 		}
 		
 		customer.setPhone(phone);
-		customer.setAddress(address);
+		customer.setAddressLine1(address1);
+		customer.setAddressLine2(address2);
 		customer.setCity(city);
+		customer.setState(state);
 		customer.setZipcode(zipCode);
 		customer.setCountry(country);
 		
@@ -182,8 +193,8 @@ public class CustomerServices {
 			readCustomerFields(newCustomer);
 			newCustomer.setRegisterDate(new Date());
 			customerDAO.create(newCustomer);
+			
 			request.setAttribute("msg", message);
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("frontend/message.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -222,6 +233,9 @@ public class CustomerServices {
 	}
 
 	public void showCustomerProfile() throws ServletException, IOException {
+		Customer customer = (Customer)request.getSession().getAttribute("loggedCustomer");
+		request.setAttribute("customer", customer);
+		generateCountryList();
 		String profilePage = "frontend/customer_profile.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(profilePage);
 		dispatcher.forward(request, response);
@@ -235,6 +249,48 @@ public class CustomerServices {
 		customerDAO.update(customer);
 		showCustomerProfile();
 		
+	}
+
+	public void showNewCustomerForm() throws ServletException, IOException {
+		generateCountryList();
+		
+		String customerForm = "add_customer.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(customerForm);
+		dispatcher.forward(request, response);
+		
+	}
+	
+	public void showRegisterForm() throws ServletException, IOException {
+		generateCountryList();
+		
+		String registerForm = "frontend/register_form.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(registerForm);
+		dispatcher.forward(request, response);
+	}
+
+	public void generateCountryList() {
+		String[] countryCodes = Locale.getISOCountries();
+		
+		Map<String, String> mapCountries = new TreeMap<>();
+		
+		for (String countryCode : countryCodes) {
+			Locale locale = new Locale("", countryCode);
+			String code = locale.getCountry();
+			String name = locale.getDisplayCountry();
+			
+			mapCountries.put(name, code);
+		}
+		
+		request.setAttribute("mapCountries", mapCountries);
+	}
+
+	public void editCustomerProfile() throws ServletException, IOException {
+		Customer customer = (Customer)request.getSession().getAttribute("loggedCustomer");
+		request.setAttribute("customer", customer);
+		generateCountryList();
+		String registerForm = "frontend/edit_profile.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(registerForm);
+		dispatcher.forward(request, response);
 	}
 	
 

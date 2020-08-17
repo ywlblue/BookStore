@@ -14,51 +14,6 @@ a:focus {
     border: 2px solid black;
 }
 
-#sidebar {
-    min-width: 300px;
-    max-width: 300px;
-    min-height: 100vh;
-    /* background: #7386D5; */
-    background: #ffffdd;
-    /* color: #fff; */
-    transition: all 0.3s;
-   
-}
-
-#sidebar .sidebar-header {
-    padding: 20px;
-    /* background: #6d7fcc; */
-    background: #ffffdd;
-    text-align: center;
-}
-
-#profile-img {
-    margin: 5%;
-    text-align: center;
-}
-
-#profile-img img {
-    height: 100px;
-    width: 100px;
-}
-
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
-}
-
-#sidebar ul li a:hover {
-    /* color: #7386D5; */
-    color: #cbeaed;
-    background: #fff;
-}
-
 #profile-content {
   width: 100%;
   position: relative;
