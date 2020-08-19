@@ -39,9 +39,15 @@ class OrderDAOTest {
 		Customer customer = customerDAO.get(3);
 		
 		order.setCustomer(customer);
-		order.setRecipientName("John Erric");
-		order.setRecipientPhone("4156890897");
-		order.setShippingAddress("123 South Street, New York, United State");
+		order.setFirstname("Kevin");
+		order.setLastname("Kwang");
+		order.setRecipientPhone("8069724546");
+		order.setAddressLine1("80 Pinsky Rd");
+		order.setAddressLine2("Apt A");
+		order.setCity("Boston");
+		order.setState("Massachusetts");
+		order.setCountry("US");
+		order.setZipcode("32105");
 		
 		Set<OrderDetail> orderDetails = new HashSet<>();
 		OrderDetail orderDetail = new OrderDetail();
@@ -54,8 +60,10 @@ class OrderDAOTest {
 		
 		orderDetails.add(orderDetail);
 		order.setOrderDetails(orderDetails);
-		
-		order.setPaymentMethod("Credit Card");
+		order.setTax(7.99f);
+		order.setShippingFee(1.99f);
+		order.setSubtotal(79.98f);
+		order.setPaymentMethod("PayPal");
 		order.setStatus("Finished");
 		
 		BookOrder createdOrder = orderDAO.create(order);
@@ -66,12 +74,16 @@ class OrderDAOTest {
 	void testCreateBookOrder2() {
 		BookOrder order = new BookOrder();
 		CustomerDAO customerDAO = new CustomerDAO();
-		Customer customer = customerDAO.get(1);
+		Customer customer = customerDAO.get(3);
 		
 		order.setCustomer(customer);
-		order.setRecipientName("Henry Joseph");
-		order.setRecipientPhone("4156396817");
-		order.setShippingAddress("1213 North Street, Walnut Creek, California, United State");
+		order.setFirstname("Alan");
+		order.setLastname("Walker");
+		order.setRecipientPhone("4153166017");
+		order.setAddressLine1("2804 Shawn Rd");
+		order.setCity("San Francisco");
+		order.setState("California");
+		order.setCountry("US");
 		
 		Set<OrderDetail> orderDetails = new HashSet<>();
 		OrderDetail orderDetail = new OrderDetail();
@@ -85,7 +97,12 @@ class OrderDAOTest {
 		orderDetails.add(orderDetail);
 		order.setOrderDetails(orderDetails);
 		
-		order.setPaymentMethod("Pay Pal");
+		order.setSubtotal(39.99f);
+		order.setTax(3.99f);
+		order.setShippingFee(1.99f);
+		order.setSubtotal(45.97f);
+		
+		order.setPaymentMethod("Credit Card");
 		order.setStatus("In Transit");
 		
 		BookOrder createdOrder = orderDAO.create(order);
@@ -96,12 +113,26 @@ class OrderDAOTest {
 	void testUpdateBookOrderShippingAddress() {
 		Integer orderId = 3;
 		BookOrder order = orderDAO.get(orderId);
-		String shippingAddress = "1256 8th Ave, Los Angeles, California, United States";
-		order.setShippingAddress(shippingAddress);
+		String shippingAddress = "1256 8th Ave";
+		order.setAddressLine1(shippingAddress);
+		order.setCity("Los Angeles");
+		order.setState("California");
+		order.setCountry("US");
 		
 		orderDAO.update(order);
 		
-		assertEquals(order.getShippingAddress(), shippingAddress);
+		assertEquals(order.getAddressLine1(), shippingAddress);
+	}
+	
+	@Test
+	void testUpdateBookOrder() {
+		Integer orderId = 10;
+		BookOrder order = orderDAO.get(orderId);
+		
+		float total = 89.96f;
+		order.setTotal(total);
+		orderDAO.update(order);
+		assertEquals(order.getTotal(), total);
 	}
 
 	@Test

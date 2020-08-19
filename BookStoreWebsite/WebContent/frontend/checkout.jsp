@@ -81,19 +81,21 @@
 				</form>
 				<div class="card-footer">
 					<div class="row">
+					<div class="col-md-4 col-sm-4 no-padding-right pull-right"></div>
+					<div class="col-md-4 col-sm-4 no-padding-right pull-right"></div>
 						<div class="col-md-4 col-sm-4 no-padding-right pull-right">
-							<div class="pull-right" style="margin: 5px">
-								Total price: <b><fmt:formatNumber
-										value="${cart.totalAmount}" type="currency" /></b>
-							</div>
+						<div class="pull-right text-right" style="margin: 5px">
+							<p>Number of Copies: ${cart.totalQuantity}</p>
+							<p>Subtotal: <fmt:formatNumber
+											value="${cart.totalAmount}" type="currency" /></p>
+							<p>Tax: <fmt:formatNumber
+											value="${tax}" type="currency" /></p>
+							<p>Shipping Fee: <fmt:formatNumber
+											value="${shippingFee}" type="currency" /></p>
+							<p>TOTAL:  <fmt:formatNumber
+											value="${total}" type="currency" /></p>
 						</div>
-						<div class="col-md-4 col-sm-4 no-padding-right pull-right">
-							<div class="pull-right" style="margin: 5px">
-								Total Books: <b>${cart.totalQuantity}</b>
-							</div>
 						</div>
-
-
 					</div>
 				</div>
 
@@ -106,10 +108,18 @@
 		</div>
 		<div>
 			<form action="place_order" method="post" id="order-form">
+				<input type="hidden" name="tax" value="${tax}"/>
+				<input type="hidden" name="shippingFee" value="${shippingFee}"/>
+				<input type="hidden" name="subtotal" value="${cart.totalAmount}"/>
 				<div class="form-group">
-					<label for="recipientName">Recipient Name:</label> <input
-						type="text" class="form-control" id="recipientName"
-						name="recipientName" value="${loggedCustomer.fullname}">
+					<label for="recipientName">Recipient First Name:</label> <input
+						type="text" class="form-control" id="recipientFirstName"
+						name="recipientFirstName" value="${loggedCustomer.firstname} ">
+				</div>
+				<div class="form-group">
+					<label for="recipientName">Recipient Last Name:</label> <input
+						type="text" class="form-control" id="recipientLastName"
+						name="recipientLastName" value="${loggedCustomer.lastname} ">
 				</div>
 				<div class="form-group">
 					<label for="recipientPhone">Recipient Phone:</label> <input
@@ -117,9 +127,14 @@
 						name="recipientPhone" value="${loggedCustomer.phone}">
 				</div>
 				<div class="form-group">
-					<label for="recipientAddress">Street Address:</label> <input
-						type="text" class="form-control" id="recipientAddress"
-						name="recipientAddress" value="${loggedCustomer.address}">
+					<label for="recipientAddress">Address Line1:</label> <input
+						type="text" class="form-control" id="addressLine1"
+						name="addressLine1" value="${loggedCustomer.addressLine1}">
+				</div>
+				<div class="form-group">
+					<label for="recipientAddress">Address Line2:</label> <input
+						type="text" class="form-control" id="addressLine2"
+						name="addressLine2" value="${loggedCustomer.addressLine2}">
 				</div>
 				<div class="form-group">
 					<label for="recipientCity">City:</label> <input type="text"
@@ -127,20 +142,26 @@
 						name="recipientCity" value="${loggedCustomer.city}">
 				</div>
 				<div class="form-group">
+					<label for="recipientState">State:</label> <input type="text"
+						class="form-control" id="recipientState"
+						name="recipientState" value="${loggedCustomer.state}">
+				</div>
+				<div class="form-group">
 					<label for="zipcode">Zip Code:</label> <input type="text"
 						class="form-control" id="zipcode"
 						name="zipcode" value="${loggedCustomer.zipcode}">
 				</div>
 				<div class="form-group">
-					<label for="recipientCountry">Country:</label> <input type="text"
-						class="form-control" id="recipientCountry"
-						name="recipientCountry" value="${loggedCustomer.country}">
+					<label for="recipientCountry">Country:</label>
+					<select name="recipientCountry" id="recipientCountry" class="form-control">
+						<c:forEach var="country" items="${mapCountries}">
+							<option value="${country.value}"<c:if test="${loggedCustomer.country eq country.value}">selected</c:if>>${country.key}</option>
+						</c:forEach>
+					</select>
 				</div>
-				<div class="shipping-title">
-					<h2>Payment:</h2>
-				</div>
+				
 				<div class="form-group">
-					<label for="paymentSelect">Example select</label> <select
+					<label for="paymentSelect">Payment Method</label> <select
 						class="form-control" id="paymentSelect"
 						name="paymentMethod">
 						<option>Cash On Delivery</option>
@@ -166,20 +187,22 @@
 		$(document).ready(function() {
 			$("#order-form").validate({
 				rules: {
-					recipientName: "required",
+					recipientFirstName: "required",
+					recipientLastName: "required",
 					recipientPhone: "required",
-					recipientAddress: "required",
+					addressLine1: "required",
 					recipientCity: "required",
-					zipcode: "required",
-					recipientCountry: "required"
+					recipientState: "required",
+					zipcode: "required"
 				},
 				messages: {
-					recipientName: "Please enter recipient name",
+					recipientFirstName: "Please enter recipient first name",
+					recipientLastName: "Please enter recipient last name",
 					recipientPhone: "Please enter recipient phone",
-					recipientAddress: "Please enter recipient address",
+					addressLine1: "Please enter recipient address",
 					recipientCity: "Please enter city",
-					zipcode: "Please enter zip code",
-					recipientCountry: "Please enter country"
+					recipientState: "Please enter state",
+					zipcode: "Please enter zip code"
 				}
 			})
 		})

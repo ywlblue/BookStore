@@ -104,7 +104,7 @@
 				<br />
 					<div class="row">
 						<div class="col-md-6">
-						<p>by ${review.customer.fullname} on ${review.reviewTime }</p>
+						<p>by ${review.customer.firstname} ${review.customer.lastname} on ${review.reviewTime }</p>
 						</div>
 					</div>
 					<br />

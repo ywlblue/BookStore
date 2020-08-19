@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -70,6 +72,24 @@ public class OrderServices {
 	}
 
 	public void showCheckoutForm() throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("cart");
+		
+		// tax is 10% of subtotal
+		float tax = shoppingCart.getTotalAmount() * 0.1f;
+		
+		// shipping fee is 1.99 USD per copy - free shipping on any order greater than 99
+		float shippingFee = 0.0f;
+		if (shoppingCart.getTotalAmount() < 99.0f) { 
+			shippingFee = shoppingCart.getTotalQuantity() * 1.99f;
+		}
+		float total = shoppingCart.getTotalAmount() + tax + shippingFee;
+		request.setAttribute("tax", tax);
+		request.setAttribute("shippingFee", shippingFee);
+		request.setAttribute("total", total);
+		
+		CommonUtility.generateCountryList(request);
+		
 		String checkoutPage = "frontend/checkout.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(checkoutPage);
 		dispatcher.forward(request, response);
@@ -77,19 +97,33 @@ public class OrderServices {
 	}
 
 	public void placeOrder() throws ServletException, IOException {
-		String recipientName = request.getParameter("recipientName");
+		String firstName = request.getParameter("recipientFirstName");
+		String lastName = request.getParameter("recipientLastName");
 		String recipientPhone = request.getParameter("recipientPhone");
-		String address = request.getParameter("recipientAddress");
+		String address1 = request.getParameter("addressLine1");
+		String address2 = request.getParameter("addressLine2");
 		String city = request.getParameter("recipientCity");
+		String state = request.getParameter("recipientState");
 		String zipcode = request.getParameter("zipcode");
 		String country = request.getParameter("recipientCountry");
 		String paymentMethod = request.getParameter("paymentMethod");
-		String shippingAddress = address + ", " + city + ", " + country + " " + zipcode;
+		float tax = Float.parseFloat(request.getParameter("tax"));
+		float shippingFee = Float.parseFloat(request.getParameter("shippingFee"));
+		float subtotal = Float.parseFloat(request.getParameter("subtotal"));
 
 		BookOrder order = new BookOrder();
-		order.setRecipientName(recipientName);
+		order.setFirstname(firstName);
+		order.setLastname(lastName);
 		order.setRecipientPhone(recipientPhone);
-		order.setShippingAddress(shippingAddress);
+		order.setAddressLine1(address1);
+		order.setAddressLine2(address2);
+		order.setCity(city);
+		order.setState(state);
+		order.setCountry(country);
+		order.setZipcode(zipcode);
+		order.setTax(tax);
+		order.setSubtotal(subtotal);
+		order.setShippingFee(shippingFee);
 		order.setPaymentMethod(paymentMethod);
 		order.setStatus("Processing");
 
@@ -106,13 +140,13 @@ public class OrderServices {
 		while (iterator.hasNext()) {
 			Book book = iterator.next();
 			Integer quantity = items.get(book);
-			float subtotal = quantity * book.getPrice();
+			float bookSubtotal = quantity * book.getPrice();
 
 			OrderDetail orderDetail = new OrderDetail();
 			orderDetail.setBook(book);
 			orderDetail.setBookOrder(order);
 			orderDetail.setQuantity(quantity);
-			orderDetail.setSubtotal(subtotal);
+			orderDetail.setSubtotal(bookSubtotal);
 
 			orderDetails.add(orderDetail);
 		}
@@ -175,6 +209,8 @@ public class OrderServices {
 			session.removeAttribute("NewBookPendingToAddToOrder");
 		}
 		
+		CommonUtility.generateCountryList(request);
+		
 		String editOrderPage = "edit_order.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(editOrderPage);
 		dispatcher.forward(request, response);
@@ -185,15 +221,31 @@ public class OrderServices {
 		HttpSession session = request.getSession();
 		BookOrder order = (BookOrder) session.getAttribute("order");
 		
-		String recipientName = request.getParameter("recipientName");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
 		String recipientPhone = request.getParameter("recipientPhone");
-		String shippingAddress = request.getParameter("shippingAddress");
+		String address1 = request.getParameter("addressLine1");
+		String address2 = request.getParameter("addressLine2");
+		String city = request.getParameter("recipientCity");
+		String state = request.getParameter("recipientState");
+		String zipcode = request.getParameter("zipcode");
+		String country = request.getParameter("country");
+		float tax = Float.parseFloat(request.getParameter("tax"));
+		float shippingFee = Float.parseFloat(request.getParameter("shippingFee"));
 		String paymentMethod = request.getParameter("paymentMethod");
 		String orderStatus = request.getParameter("orderStatus");
 		
-		order.setRecipientName(recipientName);
+		order.setFirstname(firstName);
+		order.setLastname(lastName);
 		order.setRecipientPhone(recipientPhone);
-		order.setShippingAddress(shippingAddress);
+		order.setAddressLine1(address1);
+		order.setAddressLine2(address2);
+		order.setCity(city);
+		order.setState(state);
+		order.setCountry(country);
+		order.setZipcode(zipcode);
+		order.setTax(tax);
+		order.setShippingFee(shippingFee);
 		order.setPaymentMethod(paymentMethod);
 		order.setStatus(orderStatus);
 		
@@ -226,6 +278,10 @@ public class OrderServices {
 			orderDetails.add(orderDetail);
 			totalAmount += subtotal;
 		}
+		order.setSubtotal(totalAmount);
+		
+		totalAmount += tax;
+		totalAmount += shippingFee;
 		
 		order.setTotal(totalAmount);
 		

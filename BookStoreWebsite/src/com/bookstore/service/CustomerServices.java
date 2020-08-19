@@ -81,7 +81,7 @@ public class CustomerServices {
 		String editPage = "edit_customer.jsp";
 		request.setAttribute("customer", customer);
 
-		generateCountryList();
+		CommonUtility.generateCountryList(request);
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
 		requestDispatcher.forward(request, response);
@@ -235,7 +235,7 @@ public class CustomerServices {
 	public void showCustomerProfile() throws ServletException, IOException {
 		Customer customer = (Customer)request.getSession().getAttribute("loggedCustomer");
 		request.setAttribute("customer", customer);
-		generateCountryList();
+		CommonUtility.generateCountryList(request);
 		String profilePage = "frontend/customer_profile.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(profilePage);
 		dispatcher.forward(request, response);
@@ -252,7 +252,7 @@ public class CustomerServices {
 	}
 
 	public void showNewCustomerForm() throws ServletException, IOException {
-		generateCountryList();
+		CommonUtility.generateCountryList(request);
 		
 		String customerForm = "add_customer.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(customerForm);
@@ -261,33 +261,17 @@ public class CustomerServices {
 	}
 	
 	public void showRegisterForm() throws ServletException, IOException {
-		generateCountryList();
+		CommonUtility.generateCountryList(request);
 		
 		String registerForm = "frontend/register_form.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(registerForm);
 		dispatcher.forward(request, response);
 	}
 
-	public void generateCountryList() {
-		String[] countryCodes = Locale.getISOCountries();
-		
-		Map<String, String> mapCountries = new TreeMap<>();
-		
-		for (String countryCode : countryCodes) {
-			Locale locale = new Locale("", countryCode);
-			String code = locale.getCountry();
-			String name = locale.getDisplayCountry();
-			
-			mapCountries.put(name, code);
-		}
-		
-		request.setAttribute("mapCountries", mapCountries);
-	}
-
 	public void editCustomerProfile() throws ServletException, IOException {
 		Customer customer = (Customer)request.getSession().getAttribute("loggedCustomer");
 		request.setAttribute("customer", customer);
-		generateCountryList();
+		CommonUtility.generateCountryList(request);
 		String registerForm = "frontend/edit_profile.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(registerForm);
 		dispatcher.forward(request, response);

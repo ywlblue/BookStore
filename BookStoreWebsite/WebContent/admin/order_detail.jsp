@@ -34,7 +34,7 @@
 						<table class="result-tab" width="50%">
 							<tr>
 								<th>Order By</th>
-								<td>${order.customer.fullname}</td>
+								<td>${order.customer.firstname} ${order.customer.lastname}</td>
 							</tr>
 							<tr>
 								<th>Book Copies</th>
@@ -44,17 +44,45 @@
 								<th>Total Amount</th>
 								<td>&#36;${order.total}</td>
 							</tr>
+						</table>
+						<br>
+						<hr>
+						<br>
+						<h1 align="center">Recipient Information:</h1>
+						<table class="result-tab" width="50%">
 							<tr>
 								<th>Recipient Name</th>
-								<td>${order.recipientName}</td>
+								<td>${order.firstname} ${order.lastname}</td>
 							</tr>
 							<tr>
 								<th>Recipient Phone</th>
 								<td>${order.recipientPhone}</td>
 							</tr>
 							<tr>
-								<th>Ship To</th>
-								<td>${order.shippingAddress}</td>
+								<th>Address Line1</th>
+								<td>${order.addressLine1}</td>
+							</tr>
+							<c:if test="${order.addressLine2 ne null}">
+							<tr>
+								<th>Address Line2</th>
+								<td>${order.addressLine2}</td>
+							</tr>
+							</c:if>
+							<tr>
+								<th>City</th>
+								<td>${order.city}</td>
+							</tr>
+							<tr>
+								<th>State</th>
+								<td>${order.state}</td>
+							</tr>
+							<tr>
+								<th>Country</th>
+								<td>${order.countryName}</td>
+							</tr>
+							<tr>
+								<th>Zip Code</th>
+								<td>${order.zipcode}</td>
 							</tr>
 							<tr>
 								<th>Payment Method</th>
@@ -97,9 +125,11 @@
 								</tr>
 							</c:forEach>
 							<tr>
-								<td colspan="4" align="right"><b><i>TOTAL:</i></b></td>
-								<td>${order.bookCopies}</td>
-								<td>${order.total}</td>
+								<td colspan="6" align="right">
+									<p>Tax: <fmt:formatNumber value="${order.tax}" type="currency"/></p>
+									<p>Shipping Fee: <fmt:formatNumber value="${order.shippingFee}" type="currency"/></p>
+									<p>TOTAL: <fmt:formatNumber value="${order.total}" type="currency"/></p>
+								</td>
 							</tr>
 						</table>
 					</div>

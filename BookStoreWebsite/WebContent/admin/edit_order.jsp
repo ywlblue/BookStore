@@ -40,17 +40,22 @@
 						<table class="result-tab">
 							<tr>
 								<th>Order By</th>
-								<td>${order.customer.fullname}</td>
+								<td>${order.customer.firstname}${order.customer.lastname}</td>
 							</tr>
 							<tr>
 								<th>Order Date</th>
-								<td>${order.orderDate}'</td>
+								<td>${order.orderDate}</td>
 							</tr>
 							<tr>
-								<th>Recipient Name</th>
-								<td><input class="common-text required" id="recipientName"
-									name="recipientName" value="${order.recipientName}" size="50"
+								<th>First Name</th>
+								<td><input class="common-text required" id="firstName"
+									name="firstName" value="${order.firstname}" size="50"
 									type="text"></td>
+							</tr>
+							<tr>
+								<th>Last Name</th>
+								<td><input class="common-text required" id="lastName"
+									name="lastName" value="${order.lastname}" size="50" type="text"></td>
 							</tr>
 							<tr>
 								<th>Recipient Phone</th>
@@ -59,18 +64,54 @@
 									type="text"></td>
 							</tr>
 							<tr>
-								<th>Ship To</th>
-								<td><input class="common-text required"
-									id="shippingAddress" name="shippingAddress"
-									value="${order.shippingAddress}" size="50" type="text">
-								</td>
+								<th>Shipping Address Line1</th>
+								<td><input class="common-text required" id="addressLine1"
+									name="addressLine1" value="${order.addressLine1}" size="50"
+									type="text"></td>
+							</tr>
+							<tr>
+								<th>Shipping Address Line2</th>
+								<td><input class="common-text required" id="addressLine1"
+									name="addressLine2" value="${order.addressLine2}" size="50"
+									type="text"></td>
+							</tr>
+							<tr>
+								<th>City</th>
+								<td><input class="common-text required" id="city"
+									name="recipientCity" value="${order.city}" size="50"
+									type="text"></td>
+							</tr>
+							<tr>
+								<th>State</th>
+								<td><input class="common-text required" id="state"
+									name="recipientState" value="${order.state}" size="50"
+									type="text"></td>
+							</tr>
+							<tr>
+								<th>Country</th>
+								<td><select name="country" id="country" class="common-text">
+										<c:forEach var="country" items="${mapCountries}">
+											<option value="${country.value}"
+												<c:if test="${order.customer.country eq country.value}">selected</c:if>>${country.key}</option>
+										</c:forEach>
+								</select></td>
+							</tr>
+							<tr>
+								<th>Zip Code</th>
+								<td><input class="common-text required" id="zipcode"
+									name="zipcode" value="${order.zipcode}" size="50" type="text"></td>
 							</tr>
 							<tr>
 								<th>Payment Method</th>
 								<td><select name="paymentMethod" id="paymentMethod">
-										<option value="Cash On Delivery">Cash On Delivery</option>
-										<option value="PayPal">PayPal</option>
-										<option value="Credit Card">Credit Card</option>
+										<option value="Cash On Delivery"
+											<c:if test="${paymentMethod eq 'Cash On Delivery'}">selected</c:if>>Cash
+											On Delivery</option>
+										<option value="PayPal"
+											<c:if test="${paymentMethod eq 'PayPal'}">selected</c:if>>PayPal</option>
+										<option value="Credit Card"
+											<c:if test="${paymentMethod eq 'Credit Card'}">selected</c:if>>Credit
+											Card</option>
 								</select></td>
 							</tr>
 							<tr>
@@ -127,22 +168,38 @@
 								</tr>
 							</c:forEach>
 							<tr>
-								<td colspan="4" align="right"><b><i>TOTAL:</i></b></td>
-								<td>${order.bookCopies}</td>
-								<td>${order.total}</td>
-								<td></td>
+								<td colspan="7" align="right">
+									<p>
+										Subtotal:
+										<fmt:formatNumber value="${order.subtotal}" type="currency" />
+									</p>
+									<p>
+										Tax: <input type="text" size="5" name="tax"
+											value="${order.tax}" />
+									</p>
+									<p>
+										Shipping Fee: <input type="text" size="5" name="shippingFee"
+											value="${order.shippingFee}" />
+									</p>
+									<p>
+										TOTAL:
+										<fmt:formatNumber value="${order.total}" type="currency" />
+									</p>
+								</td>
 							</tr>
 						</table>
 					</div>
-					<br> <br> 
-					<div class="result-content" align="center">
+					<br> <br>
+					<div align="center">
 						<button type="submit">Save</button>
-						<button onClick="history.go(-1)">Cancel</button>
+						<button>
+							<a href="${pageContext.request.contextPath}/admin/list_orders">Cancel</a>
+						</button>
 					</div>
-			</form>
-			<br> <br>
+				</form>
+				<br> <br>
+			</div>
 		</div>
-	</div>
 	</div>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/jquery.validate.min.js"></script>
@@ -159,9 +216,16 @@
 		$(document).ready(function() {
 			$("#order-detatil-form").validate({
 				rules: {
-					recipientName: "required",
+					firstName: "required",
+					lastName: "required",
 					recipientPhone: "required",
-					shippingAddress: "required",
+					addressLine1: "required",
+					city: "requires",
+					state: "requires",
+					country: "requires",
+					zipcode: "requires",
+					shippingFee: "required",
+					tax: "required",
 					<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
 						quantity${status.index + 1}: {
 							required: true,
@@ -172,9 +236,14 @@
 					
 				},
 				messages: {
-					recipientName: "Please enter the recipient name",
+					firstName: "Please enter the recipient first name",
+					lastName: "Please enter the recipient last name",
 					recipientPhone: "Please enter the recipient phone",
-					shippingAddress: "Please enter the shipping address",
+					addressLine1: "Please enter the shipping address",
+					city: "Please enter the city",
+					state: "Please enter the state",
+					country: "Please enter the country",
+					zipcode: "Please enter the zipcode",
 					<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
 						quantity${status.index + 1}: {
 							required: "Please enter quantity",
@@ -182,6 +251,17 @@
 							min: "Quantity must be greater than 0"
 						},
 					</c:forEach>
+						
+					shippingFee: {
+						required: "Please enter shipping fee",
+						number: "Shipping fee must be a number",
+						min: "Shipping fee must be greater than 0"
+					}
+					tax: {
+						required: "Please enter tax",
+						number: "Tax must be a number",
+						min: "Tax must be greater than 0"
+					}
 				}
 			});
 		})

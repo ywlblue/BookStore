@@ -61,7 +61,7 @@
 						</h4>
 					</c:if>
 					<div class="result-content">
-						<table class="result-tab">
+						<table class="result-tab" width="100%">
 							<tr>
 								<th class="tc" width="5%"><input class="allChoose" name=""
 									type="checkbox"></th>
@@ -81,7 +81,7 @@
 										type="checkbox"></td>
 									<td>${status.index + 1}</td>
 									<td>${order.orderId}</td>
-									<td>${order.customer.fullname}</td>
+									<td>${order.customer.firstname} ${order.customer.lastname}</td>
 									<td>${order.bookCopies}</td>
 									<td>&#36;${order.total}</td>
 									<td>${order.paymentMethod}</td>

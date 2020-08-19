@@ -3,6 +3,7 @@ package com.bookstore.entity;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -46,6 +47,7 @@ public class BookOrder implements java.io.Serializable {
 	private String city;
 	private String state;
 	private String country;
+	private String zipcode;
 	private String recipientPhone;
 	private String paymentMethod;
 	
@@ -61,12 +63,13 @@ public class BookOrder implements java.io.Serializable {
 	
 	
 
-	public BookOrder(Customer customer, Date orderDate, String addressLine1, String addressLine2, String recipientName,
+	public BookOrder(Customer customer, Date orderDate, String addressLine1, String addressLine2, String zipcode, String recipientName,
 			String recipientPhone, String paymentMethod, float total, String status) {
 		this.customer = customer;
 		this.orderDate = orderDate;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
+		this.zipcode = zipcode;
 		this.firstname = recipientName;
 		this.recipientPhone = recipientPhone;
 		this.paymentMethod = paymentMethod;
@@ -74,9 +77,9 @@ public class BookOrder implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public BookOrder(Customer customer, Date orderDate, String addressLine1, String addressLine2, String recipientName,
+	public BookOrder(Customer customer, Date orderDate, String addressLine1, String addressLine2, String zipcode, String recipientName,
 			String recipientPhone, String paymentMethod, float total, String status, Set<OrderDetail> orderDetails) {
-		this(customer, orderDate, addressLine1, addressLine2, recipientName, recipientPhone, paymentMethod, total, status);
+		this(customer, orderDate, addressLine1, addressLine2, zipcode, recipientName, recipientPhone, paymentMethod, total, status);
 		this.orderDetails = orderDetails;
 	}
 
@@ -123,19 +126,65 @@ public class BookOrder implements java.io.Serializable {
 	}
 
 
-	@Column(name = "r_address_line2", nullable = false, length = 256)
+	@Column(name = "r_address_line2", nullable = true, length = 256)
 	public String getAddressLine2() {
 		return addressLine2;
 	}
-
-
 
 	public void setAddressLine2(String addressLine2) {
 		this.addressLine2 = addressLine2;
 	}
 
+	@Column(name = "r_city", nullable = false, length = 45)
+	public String getCity() {
+		return city;
+	}
 
-	@Column(name = "first_name", nullable = false, length = 30)
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	@Column(name = "r_state", nullable = false, precision = 12, length = 45)
+	public String getState() {
+		return state;
+	}
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	@Column(name = "r_country", nullable = false, length = 4)
+	public String getCountry() {
+		return country;
+	}
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	
+	@Transient
+	public String getCountryName() {
+		// get country code and display country name
+		return new Locale("", this.country).getDisplayCountry();
+	}
+	
+	
+	@Column(name = "r_zipcode", nullable = false, length = 24)
+	public String getZipcode() {
+		return zipcode;
+	}
+
+
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+
+
+	@Column(name = "r_firstname", nullable = false, length = 30)
 	public String getFirstname() {
 		return firstname;
 	}
@@ -145,20 +194,16 @@ public class BookOrder implements java.io.Serializable {
 	}
 
 
-	@Column(name = "last_name", nullable = false, length = 30)
+	@Column(name = "r_lastname", nullable = false, length = 30)
 	public String getLastname() {
 		return lastname;
 	}
-
-
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
 
-
-
-	@Column(name = "recipient_phone", nullable = false, length = 15)
+	@Column(name = "r_phone", nullable = false, length = 15)
 	public String getRecipientPhone() {
 		return this.recipientPhone;
 	}
@@ -183,6 +228,38 @@ public class BookOrder implements java.io.Serializable {
 
 	public void setTotal(float total) {
 		this.total = total;
+	}
+
+
+	@Column(name = "subtotal", nullable = false, precision = 12, scale = 0)
+	public float getSubtotal() {
+		return subtotal;
+	}
+
+
+
+	public void setSubtotal(float subtotal) {
+		this.subtotal = subtotal;
+	}
+
+
+	@Column(name = "shipping_fee", nullable = false, precision = 12, scale = 0)
+	public float getShippingFee() {
+		return shippingFee;
+	}
+
+	public void setShippingFee(float shippingFee) {
+		this.shippingFee = shippingFee;
+	}
+
+
+	@Column(name = "tax", nullable = false, precision = 12, scale = 0)
+	public float getTax() {
+		return tax;
+	}
+
+	public void setTax(float tax) {
+		this.tax = tax;
 	}
 
 	@Column(name = "status", nullable = false, length = 20)

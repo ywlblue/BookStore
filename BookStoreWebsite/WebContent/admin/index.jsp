@@ -16,7 +16,7 @@
 		<div class="main-wrap">
 			<div class="crumb-wrap">
 				<div class="crumb-list">
-					<i class="icon-font fas fa-bullhorn"></i><span>Welcome to Jade & Gem Admin Panel!</span>
+					<i class="icon-font fas fa-bullhorn"></i><span>Welcome to Jade Bookstore's Admin Panel!</span>
 				</div>
 			</div>
 			<div class="result-wrap">

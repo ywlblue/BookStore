@@ -23,20 +23,11 @@ public class ViewCartServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		System.out.println("Map view cart");
 		Object cartObject = request.getSession().getAttribute("cart");
 		if (cartObject == null) {
 			ShoppingCart shoppingCart = new ShoppingCart();
 			request.getSession().setAttribute("cart", shoppingCart);
 		}
-		
-//		BookDAO bookDAO = new BookDAO();
-//		Book book = bookDAO.get(4);
-//		
-//		ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
-//		shoppingCart.addItem(book);
-//		shoppingCart.addItem(bookDAO.get(2));
-//		shoppingCart.addItem(bookDAO.get(5));
 		
 		String cartPage = "frontend/shopping_cart.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(cartPage);
