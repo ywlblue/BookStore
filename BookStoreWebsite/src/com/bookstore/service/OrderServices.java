@@ -46,7 +46,7 @@ public class OrderServices {
 			request.setAttribute("created_msg", message);
 		}
 
-		String orderPage = "order_list.jsp";
+		String orderPage = "orders/orders_list.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(orderPage);
 		requestDispatcher.forward(request, response);
 	}

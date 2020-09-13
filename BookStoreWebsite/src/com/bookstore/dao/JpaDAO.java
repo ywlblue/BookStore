@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 public class JpaDAO<E> {
-	private static EntityManagerFactory entityManagerFactory;
+	private static final EntityManagerFactory entityManagerFactory;
 	
 	static {
 		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");

@@ -38,7 +38,7 @@ public class UserServices {
 			request.setAttribute("created_msg", message);
 		}
 
-		String usersPage = "users_list.jsp";
+		String usersPage = "users/users_list.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(usersPage);
 		requestDispatcher.forward(request, response);
 

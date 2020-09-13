@@ -37,7 +37,7 @@ public class ReviewServices {
 			request.setAttribute("created_msg", message);
 		}
 
-		String reviewPage = "review_list.jsp";
+		String reviewPage = "reviews/reviews_list.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(reviewPage);
 		requestDispatcher.forward(request, response);
 

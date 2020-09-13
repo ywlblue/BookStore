@@ -3,9 +3,6 @@ package com.bookstore.service;
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +32,7 @@ public class CategoryServices {
 
 		List<Category> listCategory = categoryDAO.listAll();
 		request.setAttribute("listCategory", listCategory);
-		String categoryPage = "category_list.jsp";
+		String categoryPage = "categories/categories_list.jsp";
 
 		if (message != null) {
 			request.setAttribute("created_msg", message);

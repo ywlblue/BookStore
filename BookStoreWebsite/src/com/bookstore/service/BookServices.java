@@ -53,7 +53,7 @@ public class BookServices {
 			request.setAttribute("created_msg", message);
 		}
 
-		String bookPage = "book_list.jsp";
+		String bookPage = "books/books_list.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(bookPage);
 		requestDispatcher.forward(request, response);
 		

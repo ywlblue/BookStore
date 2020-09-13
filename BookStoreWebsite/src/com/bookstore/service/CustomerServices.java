@@ -43,7 +43,7 @@ public class CustomerServices {
 			request.setAttribute("created_msg", message);
 		}
 
-		String customerPage = "customer_list.jsp";
+		String customerPage = "customers/customers_list.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(customerPage);
 		requestDispatcher.forward(request, response);
 

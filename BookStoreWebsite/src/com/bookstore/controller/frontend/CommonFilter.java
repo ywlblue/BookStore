@@ -22,7 +22,7 @@ import com.bookstore.entity.Category;
 @WebFilter("/*")
 public class CommonFilter implements Filter {
 
-    private CategoryDAO categoryDAO;
+    private final CategoryDAO categoryDAO;
     public CommonFilter() {
         categoryDAO = new CategoryDAO();
     }
