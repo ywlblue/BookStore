@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+/Users/weilanyu/code/BookStore/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+1950617319.index
+978764190.index
+461392256.index
+1176053854.index
+2697313385.index
+3687314350.index

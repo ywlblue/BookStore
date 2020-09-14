@@ -211,7 +211,7 @@ public class OrderServices {
 		
 		CommonUtility.generateCountryList(request);
 		
-		String editOrderPage = "edit_order.jsp";
+		String editOrderPage = "orders/edit_order.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(editOrderPage);
 		dispatcher.forward(request, response);
 

@@ -1,0 +1,10 @@
+1597595433334	Rename field 'fullname'
+1597595448035	Rename field 'address'
+1597606034841	Extract method 'generateCountryList'
+1597607491666	Delete element
+1597610244250	Copy file
+1597620034643	Rename field 'shippingAddress'
+1597620124216	Rename field 'recipientName'
+1597620211885	Rename field 'rAddressLine1'
+1597620220726	Rename field 'rAddressLine2'
+1597683228110	Encapsulate field 'city'

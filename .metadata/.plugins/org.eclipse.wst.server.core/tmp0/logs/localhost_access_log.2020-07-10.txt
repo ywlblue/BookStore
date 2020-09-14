@@ -1,0 +1,10 @@
+127.0.0.1 - - [10/Jul/2020:18:17:06 -0700] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [10/Jul/2020:18:18:42 -0700] "GET /BookStoreWebsite/frontend/index.jsp HTTP/1.1" 200 164
+0:0:0:0:0:0:0:1 - - [10/Jul/2020:20:33:55 -0700] "GET /BookStoreWebsite HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [10/Jul/2020:20:33:55 -0700] "GET /BookStoreWebsite/ HTTP/1.1" 404 772
+127.0.0.1 - - [10/Jul/2020:20:34:39 -0700] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [10/Jul/2020:20:34:40 -0700] "GET /BookStoreWebsite/frontend/index.jsp HTTP/1.1" 200 164
+0:0:0:0:0:0:0:1 - - [10/Jul/2020:20:34:45 -0700] "GET /BookStoreWebsite HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [10/Jul/2020:20:34:45 -0700] "GET /BookStoreWebsite/ HTTP/1.1" 200 164
+0:0:0:0:0:0:0:1 - - [10/Jul/2020:20:34:48 -0700] "GET /BookStoreWebsite/ HTTP/1.1" 200 164
+0:0:0:0:0:0:0:1 - - [10/Jul/2020:20:35:07 -0700] "GET /BookStoreWebsite/ HTTP/1.1" 200 182

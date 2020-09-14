@@ -1,0 +1,11 @@
+INDEX VERSION 1.131
+/Users/weilanyu/code/BookStore/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3574502735.index
+/BookStoreWebsite/src
+/Users/weilanyu/code/BookStore/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2184702127.index
+/BookStoreWebsite/src
+/Users/weilanyu/code/BookStore/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3155257437.index
+/BookStoreWebsite/src
+/Users/weilanyu/code/BookStore/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1474582952.index
+/BookStoreWebsite/src
+/Users/weilanyu/code/BookStore/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3533979829.index
+/BookStoreWebsite/src

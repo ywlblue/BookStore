@@ -3,9 +3,6 @@ package com.bookstore.service;
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +12,9 @@ import com.bookstore.dao.UserDAO;
 import com.bookstore.entity.Users;
 
 public class UserServices {
-	private UserDAO userDAO;
-	private HttpServletRequest request;
-	private HttpServletResponse response;
+	private final UserDAO userDAO;
+	private final HttpServletRequest request;
+	private final HttpServletResponse response;
 
 	public UserServices(HttpServletRequest request, HttpServletResponse response) {
 		userDAO = new UserDAO();
@@ -74,7 +71,7 @@ public class UserServices {
 		Integer userId = Integer.parseInt(request.getParameter("id"));
 		Users user = userDAO.get(userId);
 
-		String editPage = "edit_user.jsp";
+		String editPage = "users/edit_user.jsp";
 		request.setAttribute("user", user);
 
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);

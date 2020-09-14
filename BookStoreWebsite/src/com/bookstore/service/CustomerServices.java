@@ -19,9 +19,9 @@ import com.bookstore.entity.Customer;
 import com.bookstore.entity.Users;
 
 public class CustomerServices {
-	private HttpServletRequest request;
-	private HttpServletResponse response;
-	private CustomerDAO customerDAO;
+	private final HttpServletRequest request;
+	private final HttpServletResponse response;
+	private final CustomerDAO customerDAO;
 
 	public CustomerServices(HttpServletRequest request, HttpServletResponse response) {
 		super();
@@ -78,7 +78,7 @@ public class CustomerServices {
 		Integer customerId = Integer.parseInt(request.getParameter("id"));
 		Customer customer = customerDAO.get(customerId);
 
-		String editPage = "edit_customer.jsp";
+		String editPage = "customers/edit_customer.jsp";
 		request.setAttribute("customer", customer);
 
 		CommonUtility.generateCountryList(request);

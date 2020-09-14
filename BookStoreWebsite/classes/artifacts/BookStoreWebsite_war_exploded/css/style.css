@@ -1,0 +1,147 @@
+body {
+    margin: 0;
+}
+
+/* ---------- Header ---------- */
+.header {
+    height: 200px;
+    color: #fff;
+    background-color: #005059;
+    text-align: center;
+}
+
+.tools {
+    display: flex;
+    flex-direction: row;
+    margin: 20px auto;
+}
+
+.search {
+    display: 1;
+    margin: 10px auto;
+}
+
+.auth {
+    display: 1;
+    margin: 10px auto;
+}
+
+
+
+/* ---------- New Books --------- */
+
+.new-bk {
+    height: 200px;
+    color: #fff;
+    background-color: #08808E;
+    text-align: center;
+}
+
+.best-selling-bk {
+    height: 200px;
+    color: #fff;
+    background-color: #7AC9D0;
+    text-align: center;
+}
+
+.most-favored-bk {
+    height: 200px;
+    color: #fff;
+    background-color: #C8E8EA;
+    text-align: center;
+}
+
+.footer {
+    height: 130px;
+    background-color: #FE9A84;
+    text-align: center;
+    padding: 30px;
+    position: sticky;
+}
+
+.info {
+    display: inline;
+}
+
+/* * * * * Log In 
+ * * * *
+ * * *
+ * *
+ */
+
+.log-in-container {
+    width: fit-content;
+    height: fit-content;
+    border: #005059 solid;
+    margin: 10% auto;
+    padding: 50px;
+    /* text-align: center; */
+    background-color: #08808E;
+}
+
+.title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+input {
+    width: 100%;
+    font-size: 1.2rem;
+    font-family: "Open Sans";
+    margin: 10px 0px;
+    border: none;
+    padding: 10px;
+}
+
+.agree-check {
+    display: flex;
+    flex-direction: row;
+}
+
+#agreement {
+    flex: 1;
+} 
+
+.agree-content {
+    flex: 9;
+}
+
+button {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 10px;
+    margin: 20px 0px;
+
+    background-color: #66A756;
+    color: #08808E;
+    border: none;
+}
+
+label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+
+    cursor: pointer;
+    position: relative;
+
+    margin-left: 5px;
+    margin-right: 10px;
+    top: 5px;
+}
+
+.social-media {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.social-text {
+    text-align: center;
+}
+.social-media > button {
+    flex: 1;
+    margin-right: 20px;
+    border-radius: 10px;
+}

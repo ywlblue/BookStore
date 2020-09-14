@@ -73,7 +73,7 @@ public class CategoryServices {
 		Integer catId = Integer.parseInt(request.getParameter("id"));
 		Category category = categoryDAO.get(catId);
 
-		String editPage = "edit_category.jsp";
+		String editPage = "categories/edit_category.jsp";
 		request.setAttribute("category", category);
 
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);

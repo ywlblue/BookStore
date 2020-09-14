@@ -38,3 +38,20 @@ address {
     font-weight: bold;
     margin-bottom: 1%;
 }
+
+/*------ Edit Form ------*/
+#edit-user-form,
+#edit-category-form,
+#edit-customer-form,
+#order-detail-form{
+    width: 80%;
+    align-self: center;
+}
+
+.form-title {
+    text-align: center;
+    font-size: 24px;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 1%;
+}
