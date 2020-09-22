@@ -33,7 +33,7 @@
 			</div>
 			<div>
 				<button type="submit" class="btn btn-primary">Submit</button>
-				<button class="btn btn-primary" onclick="javascript: self.close();">Cancel</button>
+				<button class="btn btn-primary" onclick="self.close();">Cancel</button>
 			</div>
 		</form>
 	</div>

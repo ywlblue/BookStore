@@ -22,7 +22,7 @@
 <jsp:include page="../partials/sidebar.jsp" />
 <div role="main" class="jumbotron bg-light mt-0 mb-0">
     <jsp:include page="../partials/quick-actions.jsp" />
-    <div class="form-title">Edit User</div>
+    <div class="form-title">Edit Customer</div>
     <div class="container">
         <div class="row">
             <div class="col offset-2">

@@ -24,10 +24,10 @@ import com.bookstore.entity.Category;
 
 
 public class BookServices {
-	private BookDAO bookDAO;
-	private CategoryDAO categoryDAO;
-	private HttpServletRequest request;
-	private HttpServletResponse response;
+	private final BookDAO bookDAO;
+	private final CategoryDAO categoryDAO;
+	private final HttpServletRequest request;
+	private final HttpServletResponse response;
 	
 	
 

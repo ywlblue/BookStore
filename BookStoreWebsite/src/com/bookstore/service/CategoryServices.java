@@ -14,9 +14,9 @@ import com.bookstore.entity.Category;
 import com.bookstore.entity.Users;
 
 public class CategoryServices {
-	private CategoryDAO categoryDAO;
-	private HttpServletRequest request;
-	private HttpServletResponse response;
+	private final CategoryDAO categoryDAO;
+	private final HttpServletRequest request;
+	private final HttpServletResponse response;
 
 	public CategoryServices( HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;

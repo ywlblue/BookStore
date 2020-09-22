@@ -234,11 +234,8 @@ public class Book implements java.io.Serializable {
 			return false;
 		Book other = (Book) obj;
 		if (bookId == null) {
-			if (other.bookId != null)
-				return false;
-		} else if (!bookId.equals(other.bookId))
-			return false;
-		return true;
+			return other.bookId == null;
+		} else return bookId.equals(other.bookId);
 	}
 
 	@Transient

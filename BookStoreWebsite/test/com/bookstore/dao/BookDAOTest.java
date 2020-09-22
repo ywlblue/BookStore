@@ -37,7 +37,7 @@ class BookDAOTest {
 	}
 
 	@Test
-	void testCreateBook() throws ParseException, MalformedURLException, IOException {
+	void testCreateBook() throws ParseException, IOException {
 		Book newBook = new Book();
 		Category category = new Category("Front End");
 		category.setCategoryId(1);
@@ -69,7 +69,7 @@ class BookDAOTest {
 	}
 
 	@Test
-	void testUpdateBook() throws ParseException, MalformedURLException, IOException {
+	void testUpdateBook() throws ParseException, IOException {
 		Book book = new Book();
 		book.setBookId(1);
 		Category category = new Category("Front End");

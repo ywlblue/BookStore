@@ -127,7 +127,7 @@ public class Review implements java.io.Serializable {
 	@Transient
 	public String getStars() {
 		String result = "";
-		int numberOfStarsOn = (int) rating;
+		int numberOfStarsOn = rating;
 		for (int i = 0; i < numberOfStarsOn; i++) {
 			result += "on,";
 		}

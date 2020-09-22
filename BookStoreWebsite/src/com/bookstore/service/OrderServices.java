@@ -23,9 +23,9 @@ import com.bookstore.entity.Customer;
 import com.bookstore.entity.OrderDetail;
 
 public class OrderServices {
-	private HttpServletRequest request;
-	private HttpServletResponse response;
-	private OrderDAO orderDAO;
+	private final HttpServletRequest request;
+	private final HttpServletResponse response;
+	private final OrderDAO orderDAO;
 
 	public OrderServices(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;

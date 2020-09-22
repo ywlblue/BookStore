@@ -68,11 +68,8 @@ public class OrderDetailId implements java.io.Serializable {
 		} else if (!book.equals(other.book))
 			return false;
 		if (bookOrder == null) {
-			if (other.bookOrder != null)
-				return false;
-		} else if (!bookOrder.equals(other.bookOrder))
-			return false;
-		return true;
+			return other.bookOrder == null;
+		} else return bookOrder.equals(other.bookOrder);
 	}
 
 }

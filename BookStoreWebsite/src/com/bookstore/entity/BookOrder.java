@@ -298,11 +298,8 @@ public class BookOrder implements java.io.Serializable {
 			return false;
 		BookOrder other = (BookOrder) obj;
 		if (orderId == null) {
-			if (other.orderId != null)
-				return false;
-		} else if (!orderId.equals(other.orderId))
-			return false;
-		return true;
+			return other.orderId == null;
+		} else return orderId.equals(other.orderId);
 	}
 	
 	@Transient

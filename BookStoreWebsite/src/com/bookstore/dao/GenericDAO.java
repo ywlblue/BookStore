@@ -4,16 +4,16 @@ import java.util.List;
 
 public interface GenericDAO<E> {
 	
-	public E create(E entity);
+	E create(E entity);
 	
-	public E update(E entity);
+	E update(E entity);
 	
-	public E get(Object id);
+	E get(Object id);
 	
-	public E delete(Object id);
+	E delete(Object id);
 	
-	public List<E> listAll();
+	List<E> listAll();
 	
-	public long count();
+	long count();
 
 }

@@ -11,7 +11,7 @@
 <body>
 	<div class="container text-center">
 		<h2>The book ${book.title} has been added to the order ID ${order.orderId}</h2>
-		<button class="btn btn-success" onclick="javascript: self.close();">Close</button>
+		<button class="btn btn-success" onclick="self.close();">Close</button>
 	</div>
 	
 	<script>

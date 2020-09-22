@@ -7,7 +7,7 @@ import java.util.Map;
 import com.bookstore.entity.Book;
 
 public class ShoppingCart {
-	private Map<Book, Integer> cart = new HashMap<>();
+	private final Map<Book, Integer> cart = new HashMap<>();
 
 	public void addItem(Book book) {
 		// if the book is already in the cart, increase the quantity

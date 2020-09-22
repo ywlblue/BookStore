@@ -16,9 +16,9 @@ import com.bookstore.entity.Customer;
 import com.bookstore.entity.Review;
 
 public class ReviewServices {
-	private HttpServletRequest request;
-	private HttpServletResponse response;
-	private ReviewDAO reviewDAO;
+	private final HttpServletRequest request;
+	private final HttpServletResponse response;
+	private final ReviewDAO reviewDAO;
 	public ReviewServices(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
